@@ -35,6 +35,9 @@ class LocalHelper private constructor(
         activity.recreate()
     }
 
+    /**
+     *Use this method [setLocaleAndRestart]  when you want to move in the same nav graph
+     **/
     fun setLocaleAndRestart(
         activity: Activity?,
         locale: Locale,
