@@ -8,6 +8,6 @@ import java.util.*
  */
 interface IPreferencesDataSource {
     fun getLocale(): Locale
-    fun persistLocale(locale: Locale)
+    fun setLocale(locale: Locale)
 
 }

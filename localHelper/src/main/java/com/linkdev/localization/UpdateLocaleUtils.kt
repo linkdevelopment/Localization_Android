@@ -8,14 +8,10 @@ import android.os.LocaleList
 import java.util.*
 
 
-class UpdateLocaleDelegate {
+class UpdateLocaleUtils {
 
-    internal fun applyLocale(context: Context, locale: Locale) {
+    fun applyLocale(context: Context, locale: Locale) {
         updateResources(context, locale)
-        val appContext = context.applicationContext
-        if (appContext !== context) {
-            updateResources(appContext, locale)
-        }
     }
 
     @Suppress("DEPRECATION")
@@ -30,14 +26,12 @@ class UpdateLocaleDelegate {
         val config = Configuration(res.configuration)
         when {
             isAtLeastSdkVersion(Build.VERSION_CODES.N) -> setLocaleForApi24(config, locale)
-            isAtLeastSdkVersion(Build.VERSION_CODES.JELLY_BEAN_MR1) -> config.setLocale(locale)
             else -> config.locale = locale
         }
         res.updateConfiguration(config, res.displayMetrics)
     }
 
     @SuppressLint("NewApi")
-    @Suppress("SpreadOperator")
     private fun setLocaleForApi24(config: Configuration, locale: Locale) {
         // bring the target locale to the front of the list
         val set = linkedSetOf(locale)

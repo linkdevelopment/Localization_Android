@@ -12,17 +12,17 @@ import com.linkdev.localization.Locales
 import com.linkdev.localizationHelper.R
 import com.linkdev.localizationHelper.uitils.IToolbar
 import kotlinx.android.synthetic.main.blank_fragment.*
-import kotlinx.android.synthetic.main.settings_fragment.*
+import kotlinx.android.synthetic.main.more_fragment.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
-class SettingsFragment : Fragment(), IToolbar {
+class MoreFragment : Fragment(), IToolbar {
 
     override var mToolbar: Toolbar?
         get() = toolBar
         set(value) {}
 
     val layoutID: Int
-        get() = R.layout.settings_fragment
+        get() = R.layout.more_fragment
 
     protected lateinit var mContext: Context
 
@@ -39,7 +39,7 @@ class SettingsFragment : Fragment(), IToolbar {
         if (activity != null)
             mContext = this.activity as Context
         setListeners()
-        setToolbar(mContext, getString(R.string.settings), false)
+        setToolbar(mContext, getString(R.string.more), false)
 
     }
 

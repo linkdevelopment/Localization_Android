@@ -16,13 +16,4 @@ internal fun isAtLeastSdkVersion(versionCode: Int): Boolean {
     return Build.VERSION.SDK_INT >= versionCode
 }
 
-internal fun Activity.resetTitle() {
-    try {
-        val info = packageManager.getActivityInfo(componentName, GET_META_DATA)
-        if (info.labelRes != 0) {
-            setTitle(info.labelRes)
-        }
-    } catch (e: PackageManager.NameNotFoundException) {
-        e.printStackTrace()
-    }
-}
+

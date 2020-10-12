@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.linkdev.localizationHelper.R
 import com.linkdev.localizationHelper.uitils.Constants
 import com.linkdev.localizationHelper.uitils.Constants.Extras.NO_ACTION
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navHostFragment)
+        bottomNavigationView.setupWithNavController(navController)
         handleIntent()
     }
 

@@ -10,19 +10,20 @@ import androidx.fragment.app.Fragment
 import com.linkdev.localization.LocalHelper
 import com.linkdev.localization.Locales
 import com.linkdev.localizationHelper.R
+import com.linkdev.localizationHelper.uitils.Constants
 import com.linkdev.localizationHelper.uitils.IToolbar
 import kotlinx.android.synthetic.main.blank_fragment.*
-import kotlinx.android.synthetic.main.settings_fragment.*
+import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
-class SettingsFragment : Fragment(), IToolbar {
+class HomeFragment : Fragment(), IToolbar {
 
     override var mToolbar: Toolbar?
         get() = toolBar
         set(value) {}
 
     val layoutID: Int
-        get() = R.layout.settings_fragment
+        get() = R.layout.home_fragment
 
     protected lateinit var mContext: Context
 
@@ -39,7 +40,7 @@ class SettingsFragment : Fragment(), IToolbar {
         if (activity != null)
             mContext = this.activity as Context
         setListeners()
-        setToolbar(mContext, getString(R.string.settings), false)
+        setToolbar(mContext, getString(R.string.home), false)
 
     }
 
@@ -47,9 +48,19 @@ class SettingsFragment : Fragment(), IToolbar {
     private fun setListeners() {
         btnChangeLang.setOnClickListener {
             if (LocalHelper.getInstance().getLocale().equals(Locales.English))
-                LocalHelper.getInstance().setLocaleAndRestart(activity, Locales.Arabic)
+                LocalHelper.getInstance().setLocaleAndRestart(
+                    activity,
+                    Locales.Arabic,
+                    R.id.action_home_to_more,
+                    Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
+                )
             else
-                LocalHelper.getInstance().setLocaleAndRestart(activity, Locales.English)
+                LocalHelper.getInstance().setLocaleAndRestart(
+                    activity,
+                    Locales.English,
+                    R.id.action_home_to_more,
+                    Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
+                )
         }
     }
 

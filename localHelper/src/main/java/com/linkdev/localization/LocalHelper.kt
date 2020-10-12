@@ -1,10 +1,10 @@
 package com.linkdev.localization
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.content.res.Configuration
+import android.content.Intent
+import androidx.annotation.IdRes
 import com.linkdev.localization.shared_prefrences.IPreferencesDataSource
 import com.linkdev.localization.shared_prefrences.PreferencesDataSource
 import java.util.*
@@ -12,39 +12,43 @@ import java.util.*
 
 class LocalHelper private constructor(
     private val iPreferencesDataSource: IPreferencesDataSource,
-    private val delegate: UpdateLocaleDelegate
+    private val updateLocaleUtils: UpdateLocaleUtils
 ) {
 
-    internal var systemLocale: Locale = defaultLocale
-
     /**
-     * Creates and sets a [Locale] using language, country and variant information.
-     *
-     * See the [Locale] class description for more information about valid language, country
-     * and variant values.
+     * Please note when call [setLocal] you must restart your App by yourself to be updated by new local
+     * Or call [setLocaleAndRestart]
      */
     @JvmOverloads
-    fun setLocale(context: Context, language: String, country: String = "", variant: String = "") {
-        setLocale(context, Locale(language, country, variant))
+    fun setLocale(context: Context, language: String, country: String = "") {
+        setLocale(context, Locale(language, country))
     }
 
 
-    fun setLocale(context: Context, locale: Locale) {
-        persistAndApply(context, locale)
+    private fun setLocale(context: Context, locale: Locale) {
+        setLocalAndApply(context, locale)
     }
 
     fun setLocaleAndRestart(activity: Activity?, locale: Locale) {
-        if (activity == null) {
-            throw Exception("LocalHelper: Activity must be NOT null")
-        } else {
-            persistAndApply(activity, locale)
-            activity.recreate()
-        }
+        check(activity != null) { "LocalHelper: Activity must be NOT null" }
+        setLocal(locale)
+        activity.recreate()
     }
 
-    /**
-     * Returns the active [Locale].
-     */
+    fun setLocaleAndRestart(
+        activity: Activity?,
+        locale: Locale,
+        @IdRes actionID: Int,
+        actionIDTag: String
+    ) {
+        check(activity != null) { "LocalHelper: Activity must be NOT null" }
+        setLocal(locale)
+        val intent = Intent(activity, activity.javaClass)
+        intent.putExtra(actionIDTag, actionID)
+        activity.startActivity(intent)
+        activity.finish()
+    }
+
     fun getLocale(): Locale {
         return iPreferencesDataSource.getLocale()
     }
@@ -55,63 +59,40 @@ class LocalHelper private constructor(
     }
 
 
-    internal fun initialize(application: Application) {
+    private fun initialize(application: Application) {
         application.registerActivityLifecycleCallbacks(
             LocalHelperActivityLifecycleCallbacks {
                 applyForActivity(it)
             }
         )
-        application.registerComponentCallbacks(
-            LocalHelperApplicationCallbacks {
-                processConfigurationChange(application, it)
-            }
-        )
-        val locale = iPreferencesDataSource.getLocale()
-
-        persistAndApply(application, locale)
     }
 
-    private fun persistAndApply(context: Context, locale: Locale) {
-        iPreferencesDataSource.persistLocale(locale)
-        delegate.applyLocale(context, locale)
+    private fun setLocalAndApply(context: Context, locale: Locale) {
+        iPreferencesDataSource.setLocale(locale)
+        updateLocaleUtils.applyLocale(context, locale)
+    }
+
+    private fun setLocal(locale: Locale) {
+        iPreferencesDataSource.setLocale(locale)
     }
 
     private fun applyLocale(context: Context) {
-        delegate.applyLocale(context, iPreferencesDataSource.getLocale())
-    }
-
-    private fun processConfigurationChange(context: Context, config: Configuration) {
-        systemLocale = config.getLocaleCompat()
-        applyLocale(context)
-
+        updateLocaleUtils.applyLocale(context, iPreferencesDataSource.getLocale())
     }
 
     private fun applyForActivity(activity: Activity) {
         applyLocale(activity)
-        activity.resetTitle()
     }
 
     companion object {
-        @SuppressLint("ConstantLocale")
-        private val defaultLocale: Locale = Locale.getDefault()
-
         private lateinit var instance: LocalHelper
 
         @JvmStatic
         fun getInstance(): LocalHelper {
-            check(::instance.isInitialized) { "LocalHelper should be initialized first" }
+            check(::instance.isInitialized) { "Please initialize localHelper in your App class first " }
             return instance
         }
 
-
-        @JvmStatic
-        fun init(application: Application, defaultLanguage: String): LocalHelper {
-            return init(application, Locale(defaultLanguage))
-        }
-
-        /**
-         * Creates and sets up the global instance using a provided locale and the default store.
-         */
         @JvmStatic
         @JvmOverloads
         fun init(
@@ -121,25 +102,14 @@ class LocalHelper private constructor(
             return init(application, PreferencesDataSource(application, defaultLocale))
         }
 
-        /**
-         * Creates and sets up the global instance.
-         *
-         * This method must be called before any calls to [LocalHelper] and may only be called once.
-         */
-        @JvmStatic
-        fun init(application: Application, store: IPreferencesDataSource): LocalHelper {
-            check(!::instance.isInitialized) { "Already initialized" }
-            val localHelper = LocalHelper(store, UpdateLocaleDelegate())
+        private fun init(application: Application, store: IPreferencesDataSource): LocalHelper {
+            check(!::instance.isInitialized) { "localHelper: already initialized" }
+            val localHelper = LocalHelper(store, UpdateLocaleUtils())
             localHelper.initialize(application)
             instance = localHelper
             return localHelper
         }
 
-        internal fun createInstance(
-            store: IPreferencesDataSource,
-            delegate: UpdateLocaleDelegate
-        ): LocalHelper {
-            return LocalHelper(store, delegate)
-        }
+
     }
 }

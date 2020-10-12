@@ -9,7 +9,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val store = PreferencesDataSource(this, Locales.English)
         LocalHelper.init(this)
     }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.linkdev.localizationHelper.ui.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_home_to_more"
+            app:destination="@id/blankFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.linkdev.localizationHelper.ui.BlankFragment"
+        android:label="BlankFragment" />
+
+
+</navigation>
