@@ -1,2 +1,2 @@
+include ':localHelper'
 include ':app'
-rootProject.name = "LocalizationHelper"

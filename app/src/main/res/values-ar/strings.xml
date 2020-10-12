@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="helloWorld">مرحبا!</string>
+    <string name="change_language">Change language</string>
+    <string name="hello_world">Hello world</string>
+    <string name="settings">الاعدادات</string>
+
+</resources>
