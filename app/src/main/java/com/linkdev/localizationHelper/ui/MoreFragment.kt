@@ -10,8 +10,9 @@ import androidx.fragment.app.Fragment
 import com.linkdev.localization.LocalHelper
 import com.linkdev.localization.Locales
 import com.linkdev.localizationHelper.R
+import com.linkdev.localizationHelper.uitils.Constants
+import com.linkdev.localizationHelper.uitils.Constants.DeepLinks.SETTINGS_PAGE_DEEP_LINK
 import com.linkdev.localizationHelper.uitils.IToolbar
-import kotlinx.android.synthetic.main.blank_fragment.*
 import kotlinx.android.synthetic.main.more_fragment.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
@@ -47,9 +48,19 @@ class MoreFragment : Fragment(), IToolbar {
     private fun setListeners() {
         btnChangeLang.setOnClickListener {
             if (LocalHelper.getInstance().getLocale().equals(Locales.English))
-                LocalHelper.getInstance().setLocaleAndRestart(activity, Locales.Arabic)
+                LocalHelper.getInstance().setLocaleAndRestart(
+                    activity,
+                    Locales.Arabic,
+                    SETTINGS_PAGE_DEEP_LINK,
+                    Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
+                )
             else
-                LocalHelper.getInstance().setLocaleAndRestart(activity, Locales.English)
+                LocalHelper.getInstance().setLocaleAndRestart(
+                    activity,
+                    Locales.English,
+                    SETTINGS_PAGE_DEEP_LINK,
+                    Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
+                )
         }
     }
 

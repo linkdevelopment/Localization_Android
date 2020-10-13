@@ -33,14 +33,9 @@ class UpdateLocaleUtils {
 
     @SuppressLint("NewApi")
     private fun setLocaleForApi24(config: Configuration, locale: Locale) {
-        // bring the target locale to the front of the list
-        val set = linkedSetOf(locale)
+        val localeList = LocaleList(locale)
+        LocaleList.setDefault(localeList)
+        config.setLocales(localeList)
 
-        val defaultLocales = LocaleList.getDefault()
-        val all = List<Locale>(defaultLocales.size()) { defaultLocales[it] }
-        // append other locales supported by the user
-        set.addAll(all)
-
-        config.setLocales(LocaleList(*set.toTypedArray()))
     }
 }

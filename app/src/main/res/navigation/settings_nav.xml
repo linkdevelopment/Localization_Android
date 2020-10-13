@@ -8,5 +8,8 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.linkdev.localizationHelper.ui.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+        <deepLink app:uri="settings://page/"/>
+
+    </fragment>
 </navigation>

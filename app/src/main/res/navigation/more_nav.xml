@@ -6,5 +6,8 @@
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.linkdev.localizationHelper.ui.MoreFragment"
-        android:label="MoreFragment" />
+        android:label="MoreFragment">
+
+    </fragment>
+
 </navigation>

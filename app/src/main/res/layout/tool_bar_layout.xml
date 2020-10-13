@@ -4,6 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolBar"
     android:layout_width="match_parent"
-    app:titleTextColor="@color/colorAccent"
+    app:titleTextColor="@color/white"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimary" />

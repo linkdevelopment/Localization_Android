@@ -11,8 +11,8 @@ import com.linkdev.localization.LocalHelper
 import com.linkdev.localization.Locales
 import com.linkdev.localizationHelper.R
 import com.linkdev.localizationHelper.uitils.Constants
+import com.linkdev.localizationHelper.uitils.Constants.DeepLinks.SETTINGS_PAGE_DEEP_LINK
 import com.linkdev.localizationHelper.uitils.IToolbar
-import kotlinx.android.synthetic.main.blank_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
@@ -51,14 +51,14 @@ class HomeFragment : Fragment(), IToolbar {
                 LocalHelper.getInstance().setLocaleAndRestart(
                     activity,
                     Locales.Arabic,
-                    R.id.action_home_to_more,
+                    R.id.action_home_to_search_fragment,
                     Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
                 )
             else
                 LocalHelper.getInstance().setLocaleAndRestart(
                     activity,
                     Locales.English,
-                    R.id.action_home_to_more,
+                    R.id.action_home_to_search_fragment,
                     Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
                 )
         }

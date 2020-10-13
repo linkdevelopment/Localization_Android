@@ -11,7 +11,6 @@ import com.linkdev.localization.LocalHelper
 import com.linkdev.localization.Locales
 import com.linkdev.localizationHelper.R
 import com.linkdev.localizationHelper.uitils.IToolbar
-import kotlinx.android.synthetic.main.blank_fragment.*
 import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 

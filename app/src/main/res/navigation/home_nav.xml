@@ -10,13 +10,14 @@
         android:name="com.linkdev.localizationHelper.ui.HomeFragment"
         android:label="HomeFragment">
         <action
-            android:id="@+id/action_home_to_more"
-            app:destination="@id/blankFragment" />
+            android:id="@+id/action_home_to_search_fragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.linkdev.localizationHelper.ui.BlankFragment"
-        android:label="BlankFragment" />
+        android:id="@+id/searchFragment"
+        android:name="com.linkdev.localizationHelper.ui.SearchFragment"
+        android:label="SearchFragment" />
+
 
 
 </navigation>
