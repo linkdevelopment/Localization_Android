@@ -1,2 +1,2 @@
-include ':localHelper'
+include ':localization'
 include ':app'
