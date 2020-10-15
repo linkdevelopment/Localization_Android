@@ -1,4 +1,4 @@
-package com.linkdev.localization
+package com.linkdev.localization.data.models
 
 import java.util.*
 

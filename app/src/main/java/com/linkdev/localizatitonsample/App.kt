@@ -1,13 +1,13 @@
-package com.linkdev.localizationHelper
+package com.linkdev.localizatitonsample
 
 import android.app.Application
-import com.linkdev.localization.LocalHelper
+import com.linkdev.localization.Localization
 
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        LocalHelper.initialize(this)
+        Localization.initialize(this)
 
 //        LocalHelper.init(this, Locales.Arabic)
 //        this.registerActivityLifecycleCallbacks(

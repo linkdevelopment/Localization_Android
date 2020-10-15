@@ -1,4 +1,4 @@
-package com.linkdev.localizationHelper.uitils
+package com.linkdev.localizatitonsample.utils
 
 object Constants {
 

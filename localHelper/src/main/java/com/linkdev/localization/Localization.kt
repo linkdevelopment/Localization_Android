@@ -6,40 +6,36 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.IdRes
-import com.linkdev.localization.shared_prefrences.PreferencesDataSource
+import com.linkdev.localization.data.shared_prefrences.LocalizationPrefsDataSource
+import com.linkdev.localization.utils.LocalizationUtils
 import java.util.*
 
 
-object LocalHelper {
+object Localization {
 
     /**
-     * Please note when call [setLocal] you must restart your App by yourself to be updated by new local
-     * Or call [setLocaleAndRestart]
+     *Called to handle the language and configuration changes, but leaves the application restart to the consumer app
      */
     @JvmOverloads
     fun setLocale(context: Context, language: String, country: String = "") {
-        setLocale(context, Locale(language, country))
+        setLocalAndApply(context, Locale(language, country))
     }
 
-
-    private fun setLocale(context: Context, locale: Locale) {
-        setLocalAndApply(context, locale)
-    }
 
     /**
      *Use this method when you want change app language with no action just recreate activity
      *  @param activity context of current activity
      *  @param lacale the new locale
      **/
-    fun setLocaleAndRestart(activity: Activity?, locale: Locale) {
-        check(activity != null) { "LocalHelper: Activity must be NOT null" }
+    fun setLocaleAndRestart(activity: Activity?, locale: Locale, bundle: Bundle? = null) {
+        check(activity != null) { "Localization: Activity must be not null" }
         setLocalAndApply(activity, locale)
-        activity.intent.replaceExtras(Bundle())
+        activity.intent.replaceExtras(bundle)
         activity.recreate()
     }
 
     /**
-     *Use this method when you want to move in the same nav graph by action ID
+     *Use this method when you wantto navigate to the same navigation graph using a specif action ID
      *  @param activity context of current activity
      *  @param lacale the new locale
      *  @param actionID the action ID which will move to
@@ -48,10 +44,10 @@ object LocalHelper {
     fun setLocaleAndRestart(
         activity: Activity?,
         locale: Locale,
-        @IdRes actionID: Int,
-        actionIDTag: String
+        actionIDTag: String,
+        @IdRes actionID: Int
     ) {
-        check(activity != null) { "LocalHelper: Activity must be NOT null" }
+        check(activity != null) { "Localization: Activity must be not null" }
         setLocalAndApply(activity, locale)
         val intent = Intent(activity, activity.javaClass)
         intent.putExtra(actionIDTag, actionID)
@@ -72,7 +68,7 @@ object LocalHelper {
         deepLink: String,
         deepLinkTag: String
     ) {
-        check(activity != null) { "LocalHelper: Activity must be NOT null" }
+        check(activity != null) { "Localization: Activity must be not null" }
         setLocalAndApply(activity, locale)
         val intent = Intent(activity, activity.javaClass)
         intent.putExtra(deepLinkTag, deepLink)
@@ -91,7 +87,7 @@ object LocalHelper {
         locale: Locale,
         activityClass: Class<Any>
     ) {
-        check(activity != null) { "LocalHelper: Activity must be NOT null" }
+        check(activity != null) { "Localization: Activity must be not null" }
         setLocalAndApply(activity, locale)
         val intent = Intent(activity, activityClass)
         activity.startActivity(intent)
@@ -99,7 +95,7 @@ object LocalHelper {
     }
 
     fun getLocale(context: Context): Locale {
-        return PreferencesDataSource(context).getLocale()
+        return LocalizationPrefsDataSource(context).getLocale()
     }
 
 
@@ -108,7 +104,7 @@ object LocalHelper {
     }
 
 
-     fun initialize(application: Application) {
+    fun initialize(application: Application) {
         application.registerActivityLifecycleCallbacks(
             LocalHelperActivityLifecycleCallbacks {
                 applyForActivity(it)
@@ -117,26 +113,26 @@ object LocalHelper {
     }
 
     private fun setLocalAndApply(context: Context, locale: Locale) {
-        PreferencesDataSource(context).setLocale(locale)
-        UpdateLocaleUtils.applyLocale(context, locale)
+        LocalizationPrefsDataSource(context).setLocale(locale)
+        LocalizationUtils.applyLocale(context, locale)
     }
 
     /**
      * store locale in preferences
      */
     private fun setLocal(context: Context, locale: Locale) {
-        PreferencesDataSource(context).setLocale(locale)
+        LocalizationPrefsDataSource(context).setLocale(locale)
     }
 
     /**
      * change resources
      */
     private fun applyLocale(context: Context) {
-        UpdateLocaleUtils.applyLocale(context, PreferencesDataSource(context).getLocale())
+        LocalizationUtils.applyLocale(context, LocalizationPrefsDataSource(context).getLocale())
     }
 
     fun init(context: Application) {
-        UpdateLocaleUtils.applyLocale(context, PreferencesDataSource(context).getLocale())
+        LocalizationUtils.applyLocale(context, LocalizationPrefsDataSource(context).getLocale())
     }
 
     private fun applyForActivity(activity: Activity) {

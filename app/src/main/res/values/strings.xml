@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">LocalizationHelper</string>
+    <string name="app_name" translatable="false">Localization Sample</string>
     <string name="settings">Settings</string>
     <string name="helloWorld">Hello World!</string>
     <string name="change_language">Change language</string>

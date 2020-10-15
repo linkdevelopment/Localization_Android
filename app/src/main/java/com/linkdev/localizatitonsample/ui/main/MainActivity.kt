@@ -1,4 +1,4 @@
-package com.linkdev.gafi.eservices.ui.main
+package com.linkdev.localizatitonsample.ui.main
 
 import android.net.Uri
 import android.os.Bundle
@@ -7,10 +7,9 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.linkdev.localization.LocalHelper
-import com.linkdev.localizationHelper.R
-import com.linkdev.localizationHelper.uitils.Constants
-import com.linkdev.localizationHelper.uitils.Constants.Extras.NO_ACTION
+import com.linkdev.localizatitonsample.R
+import com.linkdev.localizatitonsample.utils.Constants
+import com.linkdev.localizatitonsample.utils.Constants.Extras.NO_ACTION
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +19,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupNavigation()
+        handleIntent()
+    }
+
+    private fun setupNavigation() {
         navController = findNavController(R.id.navHostFragment)
         bottomNavigationView.setupWithNavController(navController)
-        handleIntent()
     }
 
     private fun handleIntent() {

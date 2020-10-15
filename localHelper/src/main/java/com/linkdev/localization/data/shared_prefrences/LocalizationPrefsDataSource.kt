@@ -1,13 +1,18 @@
-package com.linkdev.localization.shared_prefrences
+package com.linkdev.localization.data.shared_prefrences
 
 import android.content.Context
 import org.json.JSONObject
 import java.util.*
 
-class PreferencesDataSource (
-    context: Context,
-    private val defaultLocale: Locale = Locale.getDefault()
-) : IPreferencesDataSource {
+class LocalizationPrefsDataSource(
+    context: Context
+) : LocalizationIPrefsDataSource {
+    companion object {
+        private const val LANGUAGE_KEY = "language_key"
+        private const val APP_PREFERENCES = "APP_PREFERENCES"
+        private const val LANGUAGE_JSON_KEY = "language"
+        private const val COUNTRY_JSON_KEY = "country"
+    }
 
     private val prefs = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 
@@ -18,7 +23,7 @@ class PreferencesDataSource (
             val country = json.getString(COUNTRY_JSON_KEY)
             Locale(language, country)
         } else {
-            defaultLocale
+            Locale.getDefault()
         }
     }
 
@@ -31,11 +36,4 @@ class PreferencesDataSource (
     }
 
 
-
-    companion object {
-        private const val LANGUAGE_KEY = "language_key"
-        private const val APP_PREFERENCES = "APP_PREFERENCES"
-        private const val LANGUAGE_JSON_KEY = "language"
-        private const val COUNTRY_JSON_KEY = "country"
-    }
 }

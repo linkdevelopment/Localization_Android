@@ -1,4 +1,4 @@
-package com.linkdev.localization
+package com.linkdev.localization.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,10 +8,13 @@ import android.os.LocaleList
 import java.util.*
 
 
-object UpdateLocaleUtils {
+object LocalizationUtils {
 
     fun applyLocale(context: Context, locale: Locale) {
-        updateResources(context, locale)
+        updateResources(
+            context,
+            locale
+        )
     }
 
     @Suppress("DEPRECATION")
@@ -25,7 +28,10 @@ object UpdateLocaleUtils {
 
         val config = Configuration(res.configuration)
         when {
-            isAtLeastSdkVersion(Build.VERSION_CODES.N) -> setLocaleForApi24(config, locale)
+            isAtLeastSdkVersion(Build.VERSION_CODES.N) -> setLocaleForApi24(
+                config,
+                locale
+            )
             else -> config.locale = locale
         }
         res.updateConfiguration(config, res.displayMetrics)

@@ -1,9 +1,9 @@
-package com.linkdev.localizationHelper.uitils
+package com.linkdev.localizatitonsample.utils
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.linkdev.localizationHelper.R
+import com.linkdev.localizatitonsample.R
 
 
 interface IToolbar {
