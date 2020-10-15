@@ -8,7 +8,7 @@ import android.os.LocaleList
 import java.util.*
 
 
-class UpdateLocaleUtils {
+object UpdateLocaleUtils {
 
     fun applyLocale(context: Context, locale: Locale) {
         updateResources(context, locale)

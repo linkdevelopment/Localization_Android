@@ -4,7 +4,7 @@ import android.content.Context
 import org.json.JSONObject
 import java.util.*
 
-class PreferencesDataSource @JvmOverloads constructor(
+class PreferencesDataSource (
     context: Context,
     private val defaultLocale: Locale = Locale.getDefault()
 ) : IPreferencesDataSource {

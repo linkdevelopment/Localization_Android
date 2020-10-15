@@ -7,6 +7,7 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.linkdev.localization.LocalHelper
 import com.linkdev.localizationHelper.R
 import com.linkdev.localizationHelper.uitils.Constants
 import com.linkdev.localizationHelper.uitils.Constants.Extras.NO_ACTION

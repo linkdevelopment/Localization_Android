@@ -47,15 +47,15 @@ class HomeFragment : Fragment(), IToolbar {
 
     private fun setListeners() {
         btnChangeLang.setOnClickListener {
-            if (LocalHelper.getInstance().getLocale().equals(Locales.English))
-                LocalHelper.getInstance().setLocaleAndRestart(
+            if (LocalHelper.getLocale(mContext).equals(Locales.English))
+                LocalHelper.setLocaleAndRestart(
                     activity,
                     Locales.Arabic,
                     R.id.action_home_to_search_fragment,
                     Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
                 )
             else
-                LocalHelper.getInstance().setLocaleAndRestart(
+                LocalHelper.setLocaleAndRestart(
                     activity,
                     Locales.English,
                     R.id.action_home_to_search_fragment,
