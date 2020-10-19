@@ -8,19 +8,19 @@ class LocalizationPrefsDataSource(
     context: Context
 ) : LocalizationIPrefsDataSource {
     companion object {
-        private const val LANGUAGE_KEY = "language_key"
-        private const val APP_PREFERENCES = "APP_PREFERENCES"
-        private const val LANGUAGE_JSON_KEY = "language"
-        private const val COUNTRY_JSON_KEY = "country"
+        private const val LOCALIZATION_LANGUAGE_KEY = "LOCALIZATION_LANGUAGE_KEY"
+        private const val LOCALIZATION_APP_PREFERENCES = "LOCALIZATION_APP_PREFERENCES"
+        private const val LOCALIZATION_LANGUAGE_JSON_KEY = "LOCALIZATION_LANGUAGE_JSON_KEY"
+        private const val LOCALIZATION_COUNTRY_JSON_KEY = "LOCALIZATION_COUNTRY_JSON_KEY"
     }
 
-    private val prefs = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+    private val prefs = context.getSharedPreferences(LOCALIZATION_APP_PREFERENCES, Context.MODE_PRIVATE)
 
     override fun getLocale(): Locale {
-        return if (!prefs.getString(LANGUAGE_KEY, null).isNullOrBlank()) {
-            val json = JSONObject(prefs.getString(LANGUAGE_KEY, null)!!)
-            val language = json.getString(LANGUAGE_JSON_KEY)
-            val country = json.getString(COUNTRY_JSON_KEY)
+        return if (!prefs.getString(LOCALIZATION_LANGUAGE_KEY, null).isNullOrBlank()) {
+            val json = JSONObject(prefs.getString(LOCALIZATION_LANGUAGE_KEY, null)!!)
+            val language = json.getString(LOCALIZATION_LANGUAGE_JSON_KEY)
+            val country = json.getString(LOCALIZATION_COUNTRY_JSON_KEY)
             Locale(language, country)
         } else {
             Locale.getDefault()
@@ -29,10 +29,10 @@ class LocalizationPrefsDataSource(
 
     override fun setLocale(locale: Locale) {
         val json = JSONObject().apply {
-            put(LANGUAGE_JSON_KEY, locale.language)
-            put(COUNTRY_JSON_KEY, locale.country)
+            put(LOCALIZATION_LANGUAGE_JSON_KEY, locale.language)
+            put(LOCALIZATION_COUNTRY_JSON_KEY, locale.country)
         }
-        prefs.edit().putString(LANGUAGE_KEY, json.toString()).apply()
+        prefs.edit().putString(LOCALIZATION_LANGUAGE_KEY, json.toString()).apply()
     }
 
 

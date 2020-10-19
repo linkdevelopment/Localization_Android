@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui
+package com.linkdev.localizatitonsample.ui.navigation
 
 import android.content.Context
 import android.os.Bundle
@@ -9,13 +9,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.utils.IToolbar
+import com.linkdev.localizatitonsample.utils.UIUtils.setToolbar
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
-class SearchFragment : Fragment(), IToolbar {
+class SearchFragment : Fragment() {
 
-    override var mToolbar: Toolbar?
-        get() = toolBar
-        set(value) {}
 
     val layoutID: Int
         get() = R.layout.search_fragment
@@ -34,7 +32,7 @@ class SearchFragment : Fragment(), IToolbar {
         super.onActivityCreated(savedInstanceState)
         if (activity != null)
             mContext = this.activity as Context
-        setToolbar(mContext, getString(R.string.search), false)
+        setToolbar(mContext, toolBar,getString(R.string.search), false)
 
     }
 

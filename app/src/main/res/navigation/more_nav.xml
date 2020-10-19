@@ -5,7 +5,7 @@
     app:startDestination="@id/moreFragment">
     <fragment
         android:id="@+id/moreFragment"
-        android:name="com.linkdev.localizatitonsample.ui.MoreFragment"
+        android:name="com.linkdev.localizatitonsample.ui.navigation.MoreFragment"
         android:label="MoreFragment">
 
     </fragment>

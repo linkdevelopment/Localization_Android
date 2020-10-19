@@ -6,7 +6,14 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
-
+    signingConfigs {
+        release {
+            storeFile file("../keystore/keystore.jks")
+            storePassword 'localization123456'
+            keyAlias 'keyAlias'
+            keyPassword 'localizationalias'
+        }
+    }
     defaultConfig {
         applicationId "com.linkdev.localizatitonsample"
         minSdkVersion 21
@@ -20,7 +27,12 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -38,7 +50,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //nav
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.1"
 
 }

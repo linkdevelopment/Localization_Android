@@ -17,6 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activities_sample.NewsActivity" />
+        <activity android:name=".ui.activities_sample.NewsDetailsActivity" />
+        <activity android:name=".ui.fragments_sample.FragmentsSampleActivity" />
+        <activity android:name=".ui.navigation.NavigationActivity" />
+        <activity android:name=".ui.one_activity.MenuActivity" />
     </application>
 
 </manifest>

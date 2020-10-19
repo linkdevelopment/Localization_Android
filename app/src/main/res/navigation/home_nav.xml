@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.linkdev.localizatitonsample.ui.HomeFragment"
+        android:name="com.linkdev.localizatitonsample.ui.navigation.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_home_to_search_fragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.linkdev.localizatitonsample.ui.SearchFragment"
+        android:name="com.linkdev.localizatitonsample.ui.navigation.SearchFragment"
         android:label="SearchFragment" />
 
 

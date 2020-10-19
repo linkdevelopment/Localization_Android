@@ -1,62 +1,60 @@
 package com.linkdev.localizatitonsample.ui.main
 
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.linkdev.localizatitonsample.R
-import com.linkdev.localizatitonsample.utils.Constants
-import com.linkdev.localizatitonsample.utils.Constants.Extras.NO_ACTION
+import com.linkdev.localizatitonsample.ui.activities_sample.NewsActivity
+import com.linkdev.localizatitonsample.ui.fragments_sample.FragmentsSampleActivity
+import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
+import com.linkdev.localizatitonsample.ui.one_activity.MenuActivity
+import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.tool_bar_layout.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var navController: NavController
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupNavigation()
-        handleIntent()
+        setListeners()
+        UIUtils.setToolbar(this, toolBar, getString(R.string.app_name), false)
+
     }
 
-    private fun setupNavigation() {
-        navController = findNavController(R.id.navHostFragment)
-        bottomNavigationView.setupWithNavController(navController)
-    }
-
-    private fun handleIntent() {
-        val actionId = intent.getIntExtra(
-            Constants.Extras.CHANGE_LANGUAGE_REDIRECTION,
-            NO_ACTION
-        )
-        val deepLink = intent.getStringExtra(
-            Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
-        )
-        when {
-            actionId != NO_ACTION -> {
-                navigateTo(actionId)
-            }
-            !deepLink.isNullOrBlank() -> {
-                navigateTo(deepLink.toUri())
-
-            }
+    private fun setListeners() {
+        btnNavSample.setOnClickListener {
+            navigateToNavigationSample()
         }
+        btnActivitiesSample.setOnClickListener { navigateToActivitiesSample() }
+        btnFragmentsSample.setOnClickListener { navigateToFragmentsSample() }
+        btnMenuSample.setOnClickListener { navigateToMenuSample() }
     }
 
-    fun navigateTo(
-        actionId: Int
-    ) {
-        val navController = findNavController(R.id.navHostFragment)
-        navController
-            .navigate(actionId, null, null)
-
+    private fun navigateToNavigationSample() {
+        startActivity(
+            Intent(this, NavigationActivity::class.java)
+        )
+        finish()
     }
 
-    fun navigateTo(deepLink: Uri) {
-        findNavController(R.id.navHostFragment).navigate(deepLink)
+    private fun navigateToActivitiesSample() {
+        startActivity(
+            Intent(this, NewsActivity::class.java)
+        )
+        finish()
+    }
+
+    private fun navigateToFragmentsSample() {
+        startActivity(
+            Intent(this, FragmentsSampleActivity::class.java)
+        )
+        finish()
+    }
+
+    private fun navigateToMenuSample() {
+        startActivity(
+            Intent(this, MenuActivity::class.java)
+        )
+        finish()
     }
 }

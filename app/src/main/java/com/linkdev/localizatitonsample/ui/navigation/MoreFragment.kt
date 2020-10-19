@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui
+package com.linkdev.localizatitonsample.ui.navigation
 
 import android.content.Context
 import android.os.Bundle
@@ -13,14 +13,11 @@ import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.utils.Constants
 import com.linkdev.localizatitonsample.utils.Constants.DeepLinks.SETTINGS_PAGE_DEEP_LINK
 import com.linkdev.localizatitonsample.utils.IToolbar
-import kotlinx.android.synthetic.main.more_fragment.*
+import com.linkdev.localizatitonsample.utils.UIUtils.setToolbar
+import kotlinx.android.synthetic.main.langs_layout.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
-class MoreFragment : Fragment(), IToolbar {
-
-    override var mToolbar: Toolbar?
-        get() = toolBar
-        set(value) {}
+class MoreFragment : Fragment() {
 
     val layoutID: Int
         get() = R.layout.more_fragment
@@ -40,27 +37,28 @@ class MoreFragment : Fragment(), IToolbar {
         if (activity != null)
             mContext = this.activity as Context
         setListeners()
-        setToolbar(mContext, getString(R.string.more), false)
+        setToolbar(mContext,toolBar, getString(R.string.more), false)
 
     }
 
 
     private fun setListeners() {
-        btnChangeLang.setOnClickListener {
-            if (Localization.getLocale(mContext).equals(Locales.English))
-                Localization.setLocaleAndRestart(
-                    activity,
-                    Locales.Arabic,
-                    SETTINGS_PAGE_DEEP_LINK,
-                    Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
-                )
-            else
-                Localization.setLocaleAndRestart(
-                    activity,
-                    Locales.English,
-                    SETTINGS_PAGE_DEEP_LINK,
-                    Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
-                )
+        btnArabicLang.setOnClickListener {
+            Localization.setLocaleAndRestart(
+                activity,
+                Locales.Arabic,
+                SETTINGS_PAGE_DEEP_LINK,
+                Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
+            )
+
+        }
+        btnEnglishLang.setOnClickListener {
+            Localization.setLocaleAndRestart(
+                activity,
+                Locales.English,
+                SETTINGS_PAGE_DEEP_LINK,
+                Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
+            )
         }
     }
 

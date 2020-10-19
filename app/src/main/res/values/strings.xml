@@ -6,4 +6,13 @@
     <string name="home">Home</string>
     <string name="more">More</string>
     <string name="search">Search</string>
+    <string name="arabic" translatable="false">العربية</string>
+    <string name="english" translatable="false">English</string>
+    <string name="navSample">Nav sample</string>
+    <string name="activiesSample">Activities Sample</string>
+    <string name="fragmentsSample">Fragments sample</string>
+    <string name="news">News</string>
+    <string name="newsDetails">News details</string>
+    <string name="singleActivity">Single Activity</string>
+    <string name="menuSample">Menu sample</string>
 </resources>

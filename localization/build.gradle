@@ -2,18 +2,30 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 30
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionName rootProject.ext.versionName
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionName '1.0.0'
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "io.mockk:mockk:$mockkVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
+    testImplementation "junit:junit:4.13"
+    testImplementation "io.mockk:mockk:1.10.0"
     implementation 'androidx.annotation:annotation:1.1.0'
 
 }
