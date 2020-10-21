@@ -3,11 +3,16 @@ package com.linkdev.localization
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.os.LocaleList
 import androidx.annotation.IdRes
 import com.linkdev.localization.data.models.Locales
 import com.linkdev.localization.data.shared_prefrences.LocalizationPrefsDataSource
+import com.linkdev.localization.utils.LocaleContextWrapper
 import com.linkdev.localization.utils.LocalizationUtils
 import java.util.*
 
@@ -42,6 +47,7 @@ object Localization {
      *          -And restart app with new lang
      *  @param activity context of current activity
      *  @param lacale the new locale
+     *  @param activityClass if you want to more from activity to another
      **/
     fun reverseLangAndRestart(activity: Activity?, locale: Locale? = null, bundle: Bundle? = null) {
         check(activity != null) { "Localization: Activity must be not null" }
@@ -120,6 +126,7 @@ object Localization {
      *  @param lacale the new locale
      *  @param deepLink the deepLink which will move to
      *  @param deepLinkTag tag name of [deepLink]
+     *  @param activityClass if you want to more from activity to another
      **/
     fun setLocaleAndRestart(
         activity: Activity?,
@@ -147,13 +154,16 @@ object Localization {
      *          -And restart app
      *  @param activity context of current activity
      *  @param lacale the new locale
-     *  @param activityClass the activity class name will move to
+     *  @param activityClass new activity class will navigate to
+     *  @param bundle if you want to sent args
+     *  @param flags if you want to sent flags
      **/
     fun <T : Activity> setLocaleAndRestart(
         activity: Activity?,
         locale: Locale,
         activityClass: Class<T>,
-        flags: Int? = null
+        flags: Int? = null,
+        bundle: Bundle? = null
     ) {
         check(activity != null) { "Localization: Activity must be not null" }
         if (!isDifferentLocale(activity, locale.language)) return
@@ -162,6 +172,8 @@ object Localization {
         if (flags != null) {
             intent.flags = flags
         }
+        if (bundle != null)
+            intent.putExtras(bundle)
         activity.startActivity(intent)
         activity.finish()
     }
@@ -177,11 +189,28 @@ object Localization {
 
 
     fun initialize(application: Application) {
-        application.registerActivityLifecycleCallbacks(
-            LocalHelperActivityLifecycleCallbacks {
-                applyForActivity(it)
+        application.registerComponentCallbacks(
+            LocalizationApplicationCallbacks {
+                onConfigurationChange(application, it)
             }
         )
+    }
+
+    private fun onConfigurationChange(context: Context, config: Configuration) {
+        val configuration: Configuration? = config
+        if (LocalizationPrefsDataSource(context).getLocale().language.isNotEmpty()) {
+            val newLocale = Locale(LocalizationPrefsDataSource(context).getLocale().language)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                configuration?.apply {
+                    val localeList = LocaleList(newLocale)
+                    LocaleList.setDefault(localeList)
+                    setLocale(newLocale)
+                    setLocales(localeList)
+                }
+            } else {
+                configuration?.setLocale(newLocale)
+            }
+        }
     }
 
     private fun setLocalAndApply(context: Context, locale: Locale) {
@@ -198,11 +227,16 @@ object Localization {
     }
 
 
-    private fun applyForActivity(activity: Activity) {
-        applyLocale(activity)
-    }
-
     private fun isDifferentLocale(context: Context, newLang: String): Boolean {
         return !newLang.equals(getLanguage(context))
     }
+
+    fun onAttach(context: Context): ContextWrapper {
+        return LocaleContextWrapper.wrap(
+            context,
+            LocalizationPrefsDataSource(context).getLocale().language
+        )
+
+    }
+
 }

@@ -5,7 +5,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="buttonStyle">@style/buttonStyle</item>
 
     </style>
 
+    <style name="buttonStyle" parent="android:Widget.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:height">60dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+    </style>
 </resources>

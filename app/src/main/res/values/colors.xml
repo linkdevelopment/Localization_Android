@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/app_blue</color>
-    <color name="colorPrimaryDark">#2D52BC</color>
-    <color name="colorAccent">@color/app_blue</color>
     <color name="app_blue">#3867EB</color>
     <color name="white">#fff</color>
-
+    <color name="btn_highlight">#00B3B3</color>
+    <color name="colorGrayLight">#AEB0B1</color>
+    <color name="btn_end_color">#003C4B</color>
+    <color name="btn_start_color">#5CA130</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorGray">#8E8E93</color>
+    <color name="colorBlueDark">#003C4B</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="statusBarColor">#187845</color>
 </resources>

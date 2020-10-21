@@ -9,15 +9,7 @@ class App : Application() {
         super.onCreate()
         Localization.initialize(this)
 
-//        LocalHelper.init(this, Locales.Arabic)
-//        this.registerActivityLifecycleCallbacks(
-//            TestActivityLifecycleCallbacks {
-//                applyForActivity(it)
-//            }
-//        )
-
     }
-
 
 
 }

@@ -1,9 +1,11 @@
 package com.linkdev.localizatitonsample.ui.fragments_sample
 
+import android.content.Context
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.linkdev.localization.Localization
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -32,5 +34,7 @@ class FragmentsSampleActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(containerViewId, fragment, fragmentTag).commit()
     }
-
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(Localization.onAttach(newBase))
+    }
 }

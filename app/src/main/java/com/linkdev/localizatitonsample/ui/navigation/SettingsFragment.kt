@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.linkdev.localization.Localization
 import com.linkdev.localization.data.models.Locales
 import com.linkdev.localizatitonsample.R
+import com.linkdev.localizatitonsample.ui.activities_sample.NewsActivity
 import com.linkdev.localizatitonsample.utils.Constants
 import com.linkdev.localizatitonsample.utils.UIUtils.setToolbar
 import kotlinx.android.synthetic.main.langs_layout.*
@@ -46,8 +47,7 @@ class SettingsFragment : Fragment() {
                 activity,
                 Locales.Arabic,
                 Constants.DeepLinks.SETTINGS_PAGE_DEEP_LINK,
-                Constants.Extras.CHANGE_LANGUAGE_REDIRECTION
-            )
+                Constants.Extras.CHANGE_LANGUAGE_REDIRECTION)
 
         }
         btnEnglishLang.setOnClickListener {

@@ -1,8 +1,12 @@
 package com.linkdev.localizatitonsample.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.linkdev.localization.Localization
+import com.linkdev.localization.utils.LocalizationUtils
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.ui.activities_sample.NewsActivity
 import com.linkdev.localizatitonsample.ui.fragments_sample.FragmentsSampleActivity
@@ -56,5 +60,9 @@ class MainActivity : AppCompatActivity() {
             Intent(this, MenuActivity::class.java)
         )
         finish()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(Localization.onAttach(newBase))
     }
 }

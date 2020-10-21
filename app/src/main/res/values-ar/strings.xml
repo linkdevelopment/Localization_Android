@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="helloWorld">مرحبا!</string>
+    <string name="welcomeTxt">مرحبًا بكم نموزج تغير الغة</string>
     <string name="change_language">تغير اللغة</string>
     <string name="settings">الاعدادات</string>
     <string name="home">الرئيسية</string>
     <string name="more">المزيد</string>
     <string name="search">بحث</string>
-    <string name="news">News</string>
-    <string name="newsDetails">News details</string>
-    <string name="singleActivity">Single Activity</string>
-    <string name="menuSample">Menu sample</string>
+    <string name="news">الأخبار</string>
+    <string name="newsDetails">تفاصيل الأخبار</string>
 
 </resources>

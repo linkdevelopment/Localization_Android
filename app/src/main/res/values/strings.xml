@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name" translatable="false">Localization Sample</string>
     <string name="settings">Settings</string>
-    <string name="helloWorld">Hello World!</string>
+    <string name="welcomeTxt">Welcome to localization sample </string>
     <string name="change_language">Change language</string>
     <string name="home">Home</string>
     <string name="more">More</string>
     <string name="search">Search</string>
     <string name="arabic" translatable="false">العربية</string>
     <string name="english" translatable="false">English</string>
-    <string name="navSample">Nav sample</string>
-    <string name="activiesSample">Activities Sample</string>
-    <string name="fragmentsSample">Fragments sample</string>
+    <string name="navSample" translatable="false">Nav sample</string>
+    <string name="activiesSample" translatable="false">Activities Sample</string>
+    <string name="fragmentsSample" translatable="false">Fragments sample</string>
     <string name="news">News</string>
     <string name="newsDetails">News details</string>
-    <string name="singleActivity">Single Activity</string>
-    <string name="menuSample">Menu sample</string>
+    <string name="singleActivity" translatable="false">Single Activity</string>
+    <string name="menuSample" translatable="false">Menu sample</string>
 </resources>

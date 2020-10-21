@@ -1,47 +1,33 @@
 package com.linkdev.localization.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Configuration
-import android.os.Build
-import android.os.LocaleList
+import android.text.TextUtils
 import java.util.*
 
 
 object LocalizationUtils {
 
     fun applyLocale(context: Context, locale: Locale) {
-        updateResources(
+        changeAppLanguage(
             context,
-            locale
+            locale.language
         )
     }
 
-    @Suppress("DEPRECATION")
-    private fun updateResources(context: Context, locale: Locale) {
-        Locale.setDefault(locale)
-
-        val res = context.resources
-        val current = res.configuration.getLocaleCompat()
-
-        if (current == locale) return
-
-        val config = Configuration(res.configuration)
-        when {
-            isAtLeastSdkVersion(Build.VERSION_CODES.N) -> setLocaleForApi24(
-                config,
-                locale
-            )
-            else -> config.locale = locale
+    private fun changeAppLanguage(ctx: Context, languageToLoad: String) {
+        languageToLoad.apply { this.toLowerCase(Locale.getDefault()) }
+        try {
+            if (!TextUtils.isEmpty(languageToLoad)) {
+                val res = ctx.applicationContext.resources
+                val config = res.configuration
+                val locale = Locale(languageToLoad)
+                Locale.setDefault(locale)
+                config.setLocale(locale)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        res.updateConfiguration(config, res.displayMetrics)
     }
 
-    @SuppressLint("NewApi")
-    private fun setLocaleForApi24(config: Configuration, locale: Locale) {
-        val localeList = LocaleList(locale)
-        LocaleList.setDefault(localeList)
-        config.setLocales(localeList)
 
-    }
 }
