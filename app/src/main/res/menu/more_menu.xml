@@ -4,7 +4,6 @@
 
     <item
         android:id="@+id/menuMore"
-        android:icon="@drawable/ic_more_menu"
-        android:title="@string/more"
+        android:title="@string/moreMenuTxt"
         app:showAsAction="always" />
 </menu>

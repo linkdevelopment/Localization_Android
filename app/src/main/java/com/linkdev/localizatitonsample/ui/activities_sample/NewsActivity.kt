@@ -1,36 +1,39 @@
 package com.linkdev.localizatitonsample.ui.activities_sample
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.linkdev.localization.Localization
-import com.linkdev.localization.utils.LocalizationUtils
 import com.linkdev.localizatitonsample.R
+import com.linkdev.localizatitonsample.data.NewsModel
+import com.linkdev.localizatitonsample.ui.news.NewsAdapter
 import com.linkdev.localizatitonsample.utils.UIUtils
-import kotlinx.android.synthetic.main.activity_news.*
+import kotlinx.android.synthetic.main.layout_news.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
 
-class NewsActivity : AppCompatActivity() {
+class NewsActivity : AppCompatActivity(), NewsAdapter.OnAdapterNewsInteraction {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
         UIUtils.setToolbar(this, toolBar, getString(R.string.news), false)
-        setListeners()
-
+        updateNewsList()
     }
 
-    private fun setListeners() {
-        btnNewsDetails.setOnClickListener {
-            navigateToNewsDetails()
-        }
+    private fun updateNewsList() {
+        val linearLayoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rvNews.layoutManager = linearLayoutManager
+        val newsAdapter = NewsAdapter(this, UIUtils.createNewsList(), this)
+        rvNews.adapter = newsAdapter
     }
 
-    private fun navigateToNewsDetails() {
-        startActivity(Intent(this, NewsDetailsActivity::class.java))
-    }
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(Localization.onAttach(newBase))
+    }
+
+    override fun onItemNewsClicked(newsModel: NewsModel) {
+        NewsDetailsActivity.startActivity(this, newsModel)
     }
 }

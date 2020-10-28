@@ -7,6 +7,9 @@ import java.util.*
 
 object LocalizationUtils {
 
+    /*
+     *Will call [changeAppLanguage] method to apply new locale to resources
+     */
     fun applyLocale(context: Context, locale: Locale) {
         changeAppLanguage(
             context,
@@ -14,18 +17,21 @@ object LocalizationUtils {
         )
     }
 
-    private fun changeAppLanguage(ctx: Context, languageToLoad: String) {
-        languageToLoad.apply { this.toLowerCase(Locale.getDefault()) }
+    /*
+     *Will set locale with new language and update resources
+     */
+    private fun changeAppLanguage(ctx: Context, newLang: String) {
+        newLang.apply { this.toLowerCase(Locale.getDefault()) }
         try {
-            if (!TextUtils.isEmpty(languageToLoad)) {
+            if (!TextUtils.isEmpty(newLang)) {
                 val res = ctx.applicationContext.resources
                 val config = res.configuration
-                val locale = Locale(languageToLoad)
+                val locale = Locale(newLang)
                 Locale.setDefault(locale)
                 config.setLocale(locale)
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            LocalizationLogger.error(e)
         }
     }
 

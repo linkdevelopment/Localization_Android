@@ -30,7 +30,7 @@ class NavigationActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
     }
 
-    // TODO: 10/18/2020 receive action id or deeplink and start navigate to target
+    // TODO: 10/18/2020 receive arguments here that has been sent to {Localization} component and start navigation
     private fun handleIntent() {
         val actionId = intent.getIntExtra(
             Constants.Extras.CHANGE_LANGUAGE_REDIRECTION,
@@ -62,6 +62,9 @@ class NavigationActivity : AppCompatActivity() {
     fun navigateTo(deepLink: Uri) {
         findNavController(R.id.navHostFragment).navigate(deepLink)
     }
+
+    //todo here we need to pass new context to attachBaseContext that has been created by
+    // configuration context with new locale
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(Localization.onAttach(newBase))
     }

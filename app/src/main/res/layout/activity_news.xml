@@ -5,11 +5,7 @@
     android:orientation="vertical">
 
     <include layout="@layout/tool_bar_layout" />
+    <include layout="@layout/layout_news" />
 
-    <Button
-        android:id="@+id/btnNewsDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="@string/newsDetails" />
+
 </LinearLayout>

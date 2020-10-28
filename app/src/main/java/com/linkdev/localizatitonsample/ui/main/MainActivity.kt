@@ -1,17 +1,14 @@
 package com.linkdev.localizatitonsample.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.linkdev.localization.Localization
-import com.linkdev.localization.utils.LocalizationUtils
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.ui.activities_sample.NewsActivity
 import com.linkdev.localizatitonsample.ui.fragments_sample.FragmentsSampleActivity
+import com.linkdev.localizatitonsample.ui.menu_activity.MenuActivity
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
-import com.linkdev.localizatitonsample.ui.one_activity.MenuActivity
+import com.linkdev.localizatitonsample.ui.recreate_activity_sample.RecreateActivity
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -32,37 +29,38 @@ class MainActivity : AppCompatActivity() {
         btnActivitiesSample.setOnClickListener { navigateToActivitiesSample() }
         btnFragmentsSample.setOnClickListener { navigateToFragmentsSample() }
         btnMenuSample.setOnClickListener { navigateToMenuSample() }
+        btnRecreateActivitySample.setOnClickListener { navigateToRecreateActivitySample() }
     }
 
     private fun navigateToNavigationSample() {
         startActivity(
             Intent(this, NavigationActivity::class.java)
         )
-        finish()
+
     }
 
     private fun navigateToActivitiesSample() {
         startActivity(
             Intent(this, NewsActivity::class.java)
         )
-        finish()
     }
 
     private fun navigateToFragmentsSample() {
         startActivity(
             Intent(this, FragmentsSampleActivity::class.java)
         )
-        finish()
     }
 
     private fun navigateToMenuSample() {
         startActivity(
             Intent(this, MenuActivity::class.java)
         )
-        finish()
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(Localization.onAttach(newBase))
+    private fun navigateToRecreateActivitySample() {
+        startActivity(
+            Intent(this, RecreateActivity::class.java)
+        )
     }
+
 }

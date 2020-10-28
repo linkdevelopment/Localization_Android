@@ -7,17 +7,24 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.linkdev.localizatitonsample.ui.navigation.HomeFragment"
+        android:name="com.linkdev.localizatitonsample.ui.fragments.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_home_to_search_fragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/navNewsDetailsFragment">
+            <argument
+                android:name="newsModel"
+                app:argType="com.linkdev.localizatitonsample.data.NewsModel" />
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.linkdev.localizatitonsample.ui.navigation.SearchFragment"
-        android:label="SearchFragment" />
-
+        android:id="@+id/navNewsDetailsFragment"
+        android:name="com.linkdev.localizatitonsample.ui.fragments.NavNewsDetailsFragment"
+        android:label="NavNewsDetailsFragment">
+        <argument
+            android:name="newsModel"
+            app:argType="com.linkdev.localizatitonsample.data.NewsModel" />
+    </fragment>
 
 
 </navigation>

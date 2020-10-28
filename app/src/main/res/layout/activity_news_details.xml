@@ -5,17 +5,6 @@
     android:orientation="vertical">
 
     <include layout="@layout/tool_bar_layout" />
+    <include layout="@layout/layout_news_details" />
 
-    <TextView
-        android:id="@+id/tvHelloWorl"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="50dp"
-        android:text="@string/welcomeTxt" />
-
-    <include
-        layout="@layout/langs_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

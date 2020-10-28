@@ -8,6 +8,7 @@ import java.util.*
  */
 interface LocalizationIPrefsDataSource {
     fun getLocale(): Locale
+    fun getLanguage(): String
     fun setLocale(locale: Locale)
 
 }

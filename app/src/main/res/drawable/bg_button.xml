@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true">
+    <item >
         <shape android:shape="rectangle">
             <corners android:radius="8dp" />
-            <solid android:color="@color/btn_highlight" />
-            <stroke android:color="@color/btn_highlight" />
-        </shape>
-    </item>
-    <item android:state_enabled="false">
-        <shape android:shape="rectangle">
-            <corners android:radius="8dp" />
-            <solid android:color="@color/colorGrayLight" />
-            <stroke android:color="@color/colorGrayLight" />
+            <solid android:color="@color/colorAccent" />
+            <stroke android:color="@color/white" />
         </shape>
     </item>
 
-    <item>
-        <shape android:shape="rectangle">
-            <corners android:radius="8dp" />
-            <gradient android:endColor="@color/btn_end_color"
-                android:startColor="@color/btn_start_color" />
-        </shape>
-    </item>
 
 </selector>
