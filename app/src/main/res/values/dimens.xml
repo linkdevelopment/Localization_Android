@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_medium">16dp</dimen>
-    <dimen name="font_medium">14sp</dimen>
-    <dimen name="margin_large">20dp</dimen>
-    <dimen name="padding_large">18dp</dimen>
+    <dimen name="font_14">14sp</dimen>
+    <dimen name="padding_18">18dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="radius_3">3dp</dimen>
+    <dimen name="heightItemNews">130dp</dimen>
+    <dimen name="widthImageItemNews">130dp</dimen>
+    <dimen name="heightImageItemNews">100dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="heightImageItemNewsDetails">200dp</dimen>
+    <dimen name="padding_50">50dp</dimen>
+    <dimen name="font_20">20sp</dimen>
+    <dimen name="lineSeparatorHeight">1dp</dimen>
 </resources>

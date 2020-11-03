@@ -10,17 +10,17 @@ import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
 import com.linkdev.localizatitonsample.ui.fragments.NewsDetailsFragment
 import com.linkdev.localizatitonsample.ui.fragments.NewsFragment
-import com.linkdev.localizatitonsample.ui.news.NewsAdapter
+import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
-class FragmentsSampleActivity : AppCompatActivity(), NewsAdapter.OnAdapterNewsInteraction {
+class FragmentsSampleActivity : AppCompatActivity(), OnAdapterNewsInteraction {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment_sample)
+        setContentView(R.layout.layout_fragment_toolbar)
         setListeners()
         UIUtils.setToolbar(this, toolBar, getString(R.string.app_name), false)
-        replaceFragment(R.id.frmlContainer, NewsFragment.newInstance(), NewsFragment.TAG)
+        replaceFragment(R.id.fragmentContainer, NewsFragment.newInstance(), NewsFragment.TAG)
     }
 
     private fun setListeners() {
@@ -35,27 +35,22 @@ class FragmentsSampleActivity : AppCompatActivity(), NewsAdapter.OnAdapterNewsIn
         if (fragment == null || fragmentTag == null) {
             return
         }
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction().addToBackStack(null)
             .replace(containerViewId, fragment, fragmentTag).commit()
     }
 
-    override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentByTag(NewsFragment.TAG)
-        if (fragment == null ) {
-            replaceFragment(R.id.frmlContainer, NewsFragment.newInstance(), NewsFragment.TAG)
-        } else {
-            super.onBackPressed()
-        }
-    }
 
-    //todo here we need to pass new context to attachBaseContext that has been created by
-    // configuration context with new locale
+    // TODO: attach configuration context to [attachBaseContext] of consumer activity to notify it with updated resources
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(Localization.onAttach(newBase))
     }
 
     override fun onItemNewsClicked(newsModel: NewsModel) {
-        replaceFragment(R.id.frmlContainer, NewsDetailsFragment.newInstance(newsModel), NewsDetailsFragment.TAG)
+        replaceFragment(
+            R.id.fragmentContainer,
+            NewsDetailsFragment.newInstance(newsModel),
+            NewsDetailsFragment.TAG
+        )
 
     }
 }

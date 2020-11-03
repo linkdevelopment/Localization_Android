@@ -7,6 +7,11 @@ import android.os.Build
 import android.os.LocaleList
 import java.util.*
 
+/**
+ * This class will perform the following actions,
+ * -Update resources with new language
+ * -Create configuration context and wrap it in [ContextWrapper]
+ */
 class LocaleContextWrapper(base: Context?) : ContextWrapper(base) {
     companion object {
         @JvmStatic

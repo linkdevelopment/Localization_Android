@@ -2,7 +2,7 @@ package com.linkdev.localization.data.shared_prefrences
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.linkdev.localization.utils.ErrorMessages
+import com.linkdev.localization.data.models.ErrorMessages
 import org.json.JSONObject
 import java.util.*
 

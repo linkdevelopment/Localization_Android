@@ -4,26 +4,38 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import com.linkdev.localization.Localization
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.news.NewsAdapter
+import com.linkdev.localizatitonsample.ui.fragments.NewsFragment
+import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
-import kotlinx.android.synthetic.main.layout_news.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
 
-class MenuActivity : AppCompatActivity(), NewsAdapter.OnAdapterNewsInteraction {
+class MenuActivity : AppCompatActivity(), OnAdapterNewsInteraction {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu)
+        setContentView(R.layout.layout_fragment_toolbar)
         UIUtils.setToolbar(this, toolBar, getString(R.string.news), false)
-        updateNewsList()
+        replaceFragment(R.id.fragmentContainer, NewsFragment.newInstance(), NewsFragment.TAG)
+    }
 
+    protected fun replaceFragment(
+        @IdRes containerViewId: Int,
+        fragment: Fragment?,
+        fragmentTag: String?
+    ) {
+        if (fragment == null || fragmentTag == null) {
+            return
+        }
+        supportFragmentManager.beginTransaction().addToBackStack(null)
+            .replace(containerViewId, fragment, fragmentTag).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,16 +54,7 @@ class MenuActivity : AppCompatActivity(), NewsAdapter.OnAdapterNewsInteraction {
     }
 
 
-    private fun updateNewsList() {
-        val linearLayoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rvNews.layoutManager = linearLayoutManager
-        val newsAdapter = NewsAdapter(this, UIUtils.createNewsList(), this, false)
-        rvNews.adapter = newsAdapter
-    }
-
-    //todo here we need to pass new context to attachBaseContext that has been created by
-    // configuration context with new locale
+    // TODO: attach configuration context to [attachBaseContext] of consumer activity to notify it with updated resources
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(Localization.onAttach(newBase))
     }

@@ -23,19 +23,6 @@ class SettingsFragment : Fragment() {
     private lateinit var mContext: Context
     private lateinit var currentLocale: Locale
 
-    companion
-
-    object {
-        private fun getSettingsBundle(): Bundle {
-            val bundle = Bundle()
-            bundle.putString(
-                Constants.Extras.CHANGE_LANGUAGE_REDIRECTION,
-                Constants.DeepLinks.SETTINGS_PAGE_DEEP_LINK
-            )
-            return bundle
-        }
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,5 +110,15 @@ class SettingsFragment : Fragment() {
             bundle = getSettingsBundle()
         )
     }
+
+    private fun getSettingsBundle(): Bundle {
+        val bundle = Bundle()
+        bundle.putString(
+            Constants.Extras.CHANGE_LANGUAGE_REDIRECTION,
+            Constants.DeepLinks.SETTINGS_PAGE_DEEP_LINK
+        )
+        return bundle
+    }
+
 
 }

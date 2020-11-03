@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginStart="@dimen/margin_16"
+    android:layout_marginTop="@dimen/margin_8"
+    android:layout_marginEnd="@dimen/margin_8"
     android:background="@color/color_screen_background"
-    app:cardCornerRadius="3dp"
+    app:cardCornerRadius="@dimen/radius_3"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="@dimen/heightItemNews"
         android:background="@color/white">
 
         <ImageView
             android:id="@+id/imgItemNews"
-            android:layout_width="130dp"
-            android:layout_height="100dp"
-            android:layout_margin="12dp"
+            android:layout_width="@dimen/widthImageItemNews"
+            android:layout_height="@dimen/heightImageItemNews"
+            android:layout_margin="@dimen/margin_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_home" />
@@ -28,8 +28,8 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgArrowItemNews"
@@ -44,7 +44,7 @@
                 android:gravity="start"
                 android:maxLines="2"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 android:textStyle="bold"
                 tools:text="about us title " />
 
@@ -52,11 +52,11 @@
                 android:id="@+id/tvContentIemNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_8"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/font_12"
                 tools:text="about us content " />
         </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:id="@+id/imgArrowItemNews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="@dimen/margin_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

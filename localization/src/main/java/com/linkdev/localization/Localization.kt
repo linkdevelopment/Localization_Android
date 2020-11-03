@@ -7,7 +7,7 @@ import android.content.ContextWrapper
 import android.os.Bundle
 import com.linkdev.localization.data.models.Locales
 import com.linkdev.localization.data.shared_prefrences.LocalizationPrefsDataSource
-import com.linkdev.localization.utils.ErrorMessages.MSG_ACTIVITY_NULL
+import com.linkdev.localization.data.models.ErrorMessages.MSG_ACTIVITY_NULL
 import com.linkdev.localization.utils.LaunchUtils
 import com.linkdev.localization.utils.LocaleContextWrapper
 import com.linkdev.localization.utils.LocalizationUtils
@@ -16,13 +16,25 @@ import java.util.*
 
 object Localization {
 
+    init {
+
+    }
     /**
-     *Called to handle the language and configuration changes, but leaves the application restart to the consumer app
+     * Will be used to update the resources when configuration changed
+     */
+    fun initialize(application: Application) {
+        application.registerComponentCallbacks(
+            LocalizationApplicationCallback(application)
+        )
+    }
+
+    /**
+     * Called to handle the language and configuration changes, but leaves the application restart to the consumer app
      * and perform the following actions
-     *          -updated the prefs with the new lang
-     *          -update the resources configuration
-     *  @param context context of current activity
-     *  @param locale new locale
+     * -update the prefs with the new lang
+     * -update the resources configuration
+     * @param context context of current activity
+     * @param locale new locale
      */
     fun setLocale(context: Context, locale: Locale) {
         setLocalAndApply(context, locale)
@@ -30,116 +42,96 @@ object Localization {
 
 
     /**
-     * Will check on the saved language and perform the following actions
-     *         1-if new and saved local are not the same
-     *          -updated the prefs with the new lang
-     *          -update the resources configuration
-     *          -And restart app with new lang
-     *
-     *        2-if new and saved local are the same
-     *         -it reverse lang if it is arabic will be english and vice versa
-     *         -updated the prefs
-     *         -update the resources configuration
-     *          -And restart app with new lang
-     *  @param activity context of current activity
-     *  @param locale the new locale
-     *   @param bundle the new arguments
+     *-Reverse the language, if the previous language was Arabic, then it will be modified to English the vice versa and perform the following actions,
+     *-update the prefs
+     *-update the resources configuration and restart app with new lang
+     *@param currentActivity context of current activity
+     *@param destinationActivityClass new activity class will navigate to
+     *@param bundle the new arguments
+     *@param flags the intent flags
      **/
     fun <T : Activity> reverseLangAndRestart(
-        activity: Activity?, activityClass: Class<T>,
-        locale: Locale? = null, bundle: Bundle? = null
+        currentActivity: Activity?, destinationActivityClass: Class<T>,
+        bundle: Bundle? = null,
+        flags: Int? = null
     ) {
-        check(activity != null) { MSG_ACTIVITY_NULL }
-        if (locale == null) {
-            if (LocalizationPrefsDataSource.init(activity)
-                    .getLanguage() == Locales.English.language
-            )
-                setLocalAndApply(activity, Locales.Arabic)
-            else
-                setLocalAndApply(activity, Locales.English)
-        } else {
-            setLocalAndApply(activity, locale)
-        }
-        LaunchUtils.startActivity(activity,activityClass, bundle)
+        check(currentActivity != null) { MSG_ACTIVITY_NULL }
+        if (LocalizationPrefsDataSource.init(currentActivity)
+                .getLanguage() == Locales.English.language
+        )
+            setLocalAndApply(currentActivity, Locales.Arabic)
+        else
+            setLocalAndApply(currentActivity, Locales.English)
+
+        LaunchUtils.startActivity(currentActivity, destinationActivityClass, bundle, flags)
     }
 
     /**
      * Will check on the saved language and perform the following actions
-     *         1-if new and saved locale are the same return with no action will take
+     * 1-If the new and saved locale are the same the method will return and will not perform any action
      *
-     *         2-updated the prefs with the new lang
-     *          -update the resources configuration
-     *          -And recreate activity with new lang
-     *  @param activity context of current activity
+     * 2-If the new and saved local are different,
+     * -Update the prefs with the new lang
+     * -Update the resources configuration
+     * -And recreate activity with new lang
+     *  @param currentActivity context of current activity
      *  @param locale the new locale
      *  @param bundle the new arguments
      **/
-    fun setLocaleAndRecreate(activity: Activity?, locale: Locale, bundle: Bundle? = null) {
-        check(activity != null) { MSG_ACTIVITY_NULL }
-        if (!isDifferentLocale(activity, locale.language)) return
+    fun setLocaleAndRecreate(currentActivity: Activity?, locale: Locale, bundle: Bundle? = null) {
+        check(currentActivity != null) { MSG_ACTIVITY_NULL }
+        if (!isDifferentLocale(currentActivity, locale.language)) return
 
-        setLocalAndApply(activity, locale)
-        activity.intent.replaceExtras(bundle)
-        activity.recreate()
+        setLocalAndApply(currentActivity, locale)
+        LaunchUtils.recreateActivity(currentActivity, bundle)
     }
 
     /**
      * Will check on the saved language and perform the following actions
-     *         1-if new and saved locale are the same return with no action will take
+     * 1-If the new and saved locale are the same the method will return and will not perform any action
      *
-     *         2-updated the prefs with the new lang
-     *          -update the resources configuration
-     *          -navigate to new activity
-     *          -And restart app
-     *  @param activity context of current activity
-     *  @param locale the new locale
-     *  @param activityClass new activity class will navigate to
-     *  @param bundle the new arguments
-     *  @param flags the intent flags
+     * 2-If the new and saved local are different,
+     * -update the prefs with the new lang
+     * -update the resources configuration
+     * -navigate to the new activity and restart app
+     * @param currentActivity context of current activity
+     * @param locale the new locale
+     * @param destinationActivityClass new activity class will navigate to
+     * @param bundle the new arguments
+     * @param flags the intent flags
      **/
     fun <T : Activity> setLocaleAndRestart(
-        activity: Activity?,
+        currentActivity: Activity?,
         locale: Locale,
-        activityClass: Class<T>,
-        flags: Int? = null,
-        bundle: Bundle? = null
+        destinationActivityClass: Class<T>,
+        bundle: Bundle? = null,
+        flags: Int? = null
     ) {
-        check(activity != null) { MSG_ACTIVITY_NULL }
-        if (!isDifferentLocale(activity, locale.language)) return
-        setLocalAndApply(activity, locale)
-        LaunchUtils.startActivity(activity, activityClass, bundle, flags)
+        check(currentActivity != null) { MSG_ACTIVITY_NULL }
+        if (!isDifferentLocale(currentActivity, locale.language)) return
+        setLocalAndApply(currentActivity, locale)
+        LaunchUtils.startActivity(currentActivity, destinationActivityClass, bundle, flags)
     }
 
 
-    /*
-     * Will be initialized in app application class to be invoked when configuration changed
-     */
-
-    fun initialize(application: Application) {
-        application.registerComponentCallbacks(
-            LocalizationApplicationCallback(application)
-        )
-    }
-
-    /*
-     *Will store locale in prefs and
-     *Update resources with new locale
+    /**
+     * Will store locale in prefs and
+     * Update resources with new locale
      */
     private fun setLocalAndApply(context: Context, locale: Locale) {
-        if (!isDifferentLocale(context, locale.language)) return
         LocalizationPrefsDataSource.init(context).setLocale(locale)
         LocalizationUtils.applyLocale(context, locale)
     }
 
-    /*
-     *Will check saved and new locale and returns {true} if they are the same
+    /**
+     * Will check saved and new locale and returns {true} if they are the same
      */
     private fun isDifferentLocale(context: Context, newLang: String): Boolean {
         return newLang != LocalizationPrefsDataSource.init(context).getLanguage()
     }
 
-    /*
-     *Will create configuration context with save locale
+    /**
+     * Will create configuration context with save locale
      * to be passed to {attachBaseContext} of consumer activity
      */
     fun onAttach(context: Context): ContextWrapper {

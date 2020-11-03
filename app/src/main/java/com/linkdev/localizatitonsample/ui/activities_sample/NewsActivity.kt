@@ -8,20 +8,21 @@ import com.linkdev.localization.Localization
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
 import com.linkdev.localizatitonsample.ui.news.NewsAdapter
+import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
 
-class NewsActivity : AppCompatActivity(), NewsAdapter.OnAdapterNewsInteraction {
+class NewsActivity : AppCompatActivity(), OnAdapterNewsInteraction {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
         UIUtils.setToolbar(this, toolBar, getString(R.string.news), false)
-        updateNewsList()
+        loadnewsList()
     }
 
-    private fun updateNewsList() {
+    private fun loadnewsList() {
         val linearLayoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvNews.layoutManager = linearLayoutManager

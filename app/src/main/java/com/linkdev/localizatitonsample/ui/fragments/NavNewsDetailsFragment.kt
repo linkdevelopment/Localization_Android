@@ -2,9 +2,7 @@ package com.linkdev.localizatitonsample.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -14,33 +12,27 @@ import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
 import com.linkdev.localizatitonsample.utils.Constants
 import com.linkdev.localizatitonsample.utils.UIUtils.setToolbar
-import kotlinx.android.synthetic.main.langs_layout.*
 import kotlinx.android.synthetic.main.layout_news_details.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 import java.util.*
 
 class NavNewsDetailsFragment : Fragment() {
 
-    companion object {
-        private fun getNavNewsDetailsBundle(): Bundle {
-            val bundle = Bundle()
-            bundle.putInt(
-                Constants.Extras.CHANGE_LANGUAGE_REDIRECTION,
-                R.id.home
-            )
-            return bundle
-        }
-
-    }
 
     protected lateinit var mContext: Context
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_nav_news_details, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,11 +40,30 @@ class NavNewsDetailsFragment : Fragment() {
         if (activity != null)
             mContext = this.activity as Context
         setToolbar(mContext, toolBar, getString(R.string.newsDetails), false)
-        setNewsDetails()
-        setListeners()
+        loadNewsDetails()
     }
 
-    private fun setNewsDetails() {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.news_details_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return (when (item.itemId) {
+            R.id.arabic -> {
+                changeLang(Locales.Arabic)
+                true
+            }
+            R.id.english -> {
+                changeLang(Locales.English)
+                true
+            }
+            else ->
+                super.onOptionsItemSelected(item)
+        })
+    }
+
+    private fun loadNewsDetails() {
         val args: NavNewsDetailsFragmentArgs by navArgs()
         val newsModel = args.newsModel
         tvTitleNews.text = getString(newsModel.title)
@@ -60,15 +71,6 @@ class NavNewsDetailsFragment : Fragment() {
         imgNews.setImageDrawable(ContextCompat.getDrawable(mContext, newsModel.imgIDRes))
     }
 
-    private fun setListeners() {
-        btnArabicLang.setOnClickListener {
-            changeLang(Locales.Arabic)
-
-        }
-        btnEnglishLang.setOnClickListener {
-            changeLang(Locales.English)
-        }
-    }
 
     private fun changeLang(newLocale: Locale) {
         Localization.setLocaleAndRestart(
@@ -78,4 +80,14 @@ class NavNewsDetailsFragment : Fragment() {
             bundle = getNavNewsDetailsBundle()
         )
     }
+
+    private fun getNavNewsDetailsBundle(): Bundle {
+        val bundle = Bundle()
+        bundle.putInt(
+            Constants.Extras.CHANGE_LANGUAGE_REDIRECTION,
+            R.id.home
+        )
+        return bundle
+    }
+
 }

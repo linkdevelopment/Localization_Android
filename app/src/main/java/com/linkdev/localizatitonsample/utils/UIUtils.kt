@@ -24,39 +24,39 @@ object UIUtils {
 
     fun createNewsList(): ArrayList<NewsModel> {
         val newsList: ArrayList<NewsModel> = arrayListOf()
-        val aboutUsModel = NewsModel(
+        val newsModel = NewsModel(
             R.string.introductionToActivities,
             R.string.introductionToActivitiesContent,
             R.drawable.ic_android_lollipop
         )
-        newsList.add(aboutUsModel)
-        val aboutUsModel1 = NewsModel(
+        newsList.add(newsModel)
+        val newsModel1 = NewsModel(
             R.string.understandTheActivityLifecycle,
             R.string.understandTheActivityLifecycleContent,
             R.drawable.ic_android_device
         )
-        newsList.add(aboutUsModel1)
+        newsList.add(newsModel1)
 
-        val aboutUsModel2 = NewsModel(
+        val newsModel2 = NewsModel(
             R.string.handleActivityStateChanges,
             R.string.handleActivityStateChangesContent,
             R.drawable.ic_android_google_security
         )
-        newsList.add(aboutUsModel2)
+        newsList.add(newsModel2)
 
-        val aboutUsModel3 = NewsModel(
+        val newsModel3 = NewsModel(
             R.string.testYourAppActivities,
             R.string.testYourAppActivitiesContent,
             R.drawable.ic_android_store
         )
-        newsList.add(aboutUsModel3)
+        newsList.add(newsModel3)
 
-        val aboutUsModel4 = NewsModel(
+        val newsModel4 = NewsModel(
             R.string.understandTasksAndBackStack,
             R.string.understandTasksAndBackStackContent,
             R.drawable.ic_android_lollipop
         )
-        newsList.add(aboutUsModel4)
+        newsList.add(newsModel4)
 
 
         return newsList

@@ -63,8 +63,8 @@ class NavigationActivity : AppCompatActivity() {
         findNavController(R.id.navHostFragment).navigate(deepLink)
     }
 
-    //todo here we need to pass new context to attachBaseContext that has been created by
-    // configuration context with new locale
+    // TODO: attach configuration context to [attachBaseContext] of consumer activity to notify it with updated resources
+
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(Localization.onAttach(newBase))
     }

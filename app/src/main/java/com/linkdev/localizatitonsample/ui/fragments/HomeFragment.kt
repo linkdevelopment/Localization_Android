@@ -7,27 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
-import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.linkdev.localization.Localization
-import com.linkdev.localization.data.models.Locales
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
 import com.linkdev.localizatitonsample.ui.news.NewsAdapter
-import com.linkdev.localizatitonsample.utils.Constants
+import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
-import kotlinx.android.synthetic.main.langs_layout.*
 import kotlinx.android.synthetic.main.layout_news.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
-import java.util.*
 
-class HomeFragment : Fragment(), NewsAdapter.OnAdapterNewsInteraction {
+class HomeFragment : Fragment(), OnAdapterNewsInteraction {
 
     private lateinit var mContext: Context
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +29,15 @@ class HomeFragment : Fragment(), NewsAdapter.OnAdapterNewsInteraction {
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
-    private fun updateNewsList() {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (activity != null)
+            mContext = this.activity as Context
+        UIUtils.setToolbar(mContext, toolBar, getString(R.string.home), false)
+        loadNewsList()
+    }
+
+    private fun loadNewsList() {
         val linearLayoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         rvNews.layoutManager = linearLayoutManager
@@ -45,30 +45,15 @@ class HomeFragment : Fragment(), NewsAdapter.OnAdapterNewsInteraction {
         rvNews.adapter = newsAdapter
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (activity != null)
-            mContext = this.activity as Context
-        UIUtils.setToolbar(mContext, toolBar, getString(R.string.home), false)
-        updateNewsList()
-    }
-
-
 
     override fun onItemNewsClicked(newsModel: NewsModel) {
-        navigateTo(HomeFragmentDirections.actionHomeToSearchFragment(newsModel))
+        navigateTo(HomeFragmentDirections.actionHomeToNavNewsDetailsFragment(newsModel))
     }
 
-    fun navigateTo(navDirections: NavDirections, navigatorExtras: Navigator.Extras? = null) {
+    private fun navigateTo(navDirections: NavDirections) {
         val navController = findNavController()
-        if (navigatorExtras == null) {
-            if (findNavController().currentDestination?.getAction(navDirections.actionId)
-                != null
-            )
-                navController
-                    .navigate(navDirections)
-        } else
-            navController
-                .navigate(navDirections, navigatorExtras)
+        if (findNavController().currentDestination?.getAction(navDirections.actionId) != null)
+            navController.navigate(navDirections)
+
     }
 }

@@ -3,6 +3,8 @@ package com.linkdev.localizatitonsample.ui.activities_sample
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.linkdev.localization.Localization
@@ -11,7 +13,6 @@ import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
 import com.linkdev.localizatitonsample.ui.fragments.NewsDetailsFragment
 import com.linkdev.localizatitonsample.utils.UIUtils
-import kotlinx.android.synthetic.main.langs_layout.*
 import kotlinx.android.synthetic.main.layout_news_details.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 import java.util.*
@@ -32,26 +33,38 @@ class NewsDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_details)
-        setListeners()
         UIUtils.setToolbar(this, toolBar, getString(R.string.newsDetails), false)
-        setNewsDetails()
+        loadNewsDetails()
     }
 
-    private fun setNewsDetails() {
-        val newsModel: NewsModel = intent?.extras?.getParcelable(NewsDetailsFragment.NEWS_MODEL_TAG) ?: return
+    private fun loadNewsDetails() {
+        val newsModel: NewsModel =
+            intent?.extras?.getParcelable(NewsDetailsFragment.NEWS_MODEL_TAG) ?: return
         tvTitleNews.text = getString(newsModel.title)
         tvContentIemNews.text = getString(newsModel.content)
         imgNews.setImageDrawable(ContextCompat.getDrawable(this, newsModel.imgIDRes))
     }
 
-    private fun setListeners() {
-        btnArabicLang.setOnClickListener {
-            changeLang(Locales.Arabic)
-        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.news_details_menu, menu)
+        return true
+    }
 
-        btnEnglishLang.setOnClickListener {
-            changeLang(Locales.English)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.arabic -> {
+                changeLang(Locales.Arabic)
+
+                return true
+            }
+
+            R.id.english -> {
+                changeLang(Locales.English)
+
+                return true
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun changeLang(newLocale: Locale) {
@@ -59,12 +72,12 @@ class NewsDetailsActivity : AppCompatActivity() {
             this,
             newLocale,
             NewsActivity::class.java,
-            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         )
     }
 
-    //todo here we need to pass new context to attachBaseContext that has been created by
-    // configuration context with new locale
+    // TODO: attach configuration context to [attachBaseContext] of consumer activity to notify it with updated resources
+
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(Localization.onAttach(newBase))
     }

@@ -7,10 +7,10 @@
     <include layout="@layout/tool_bar_layout" />
 
     <TextView
-        android:id="@+id/tvHelloWorl"
+        android:id="@+id/tvLocalizationDescText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="50dp"
+        android:padding="@dimen/padding_50"
         android:text="@string/localizationTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

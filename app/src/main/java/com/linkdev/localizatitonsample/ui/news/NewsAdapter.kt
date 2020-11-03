@@ -70,8 +70,5 @@ class NewsAdapter(
 
     }
 
-    interface OnAdapterNewsInteraction {
-        fun onItemNewsClicked(newsModel: NewsModel)
-    }
 
 }

@@ -10,7 +10,7 @@
         android:name="com.linkdev.localizatitonsample.ui.fragments.HomeFragment"
         android:label="HomeFragment">
         <action
-            android:id="@+id/action_home_to_search_fragment"
+            android:id="@+id/action_home_to_nav_news_details_fragment"
             app:destination="@id/navNewsDetailsFragment">
             <argument
                 android:name="newsModel"

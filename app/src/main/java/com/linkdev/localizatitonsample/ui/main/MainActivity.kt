@@ -8,7 +8,7 @@ import com.linkdev.localizatitonsample.ui.activities_sample.NewsActivity
 import com.linkdev.localizatitonsample.ui.fragments_sample.FragmentsSampleActivity
 import com.linkdev.localizatitonsample.ui.menu_activity.MenuActivity
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
-import com.linkdev.localizatitonsample.ui.recreate_activity_sample.RecreateActivity
+import com.linkdev.localizatitonsample.ui.recreate_activity_sample.RecreateSampleActivity
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToRecreateActivitySample() {
         startActivity(
-            Intent(this, RecreateActivity::class.java)
+            Intent(this, RecreateSampleActivity::class.java)
         )
     }
 

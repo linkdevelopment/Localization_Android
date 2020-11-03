@@ -2,9 +2,7 @@ package com.linkdev.localizatitonsample.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.linkdev.localization.Localization
@@ -12,7 +10,6 @@ import com.linkdev.localization.data.models.Locales
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
 import com.linkdev.localizatitonsample.ui.fragments_sample.FragmentsSampleActivity
-import kotlinx.android.synthetic.main.langs_layout.view.*
 import kotlinx.android.synthetic.main.layout_news_details.*
 import java.util.*
 
@@ -36,7 +33,13 @@ class NewsDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         if (activity != null)
             mContext = this.activity as Context
-        setNewsDetails()
+        loadNewsDetails()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(
@@ -45,26 +48,34 @@ class NewsDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView: View = inflater.inflate(R.layout.layout_news_details, container, false)
-        setListeners(rootView)
         return rootView
     }
 
-    private fun setNewsDetails() {
+    private fun loadNewsDetails() {
         val newsModel: NewsModel = arguments?.getParcelable(NEWS_MODEL_TAG) ?: return
         tvTitleNews.text = getString(newsModel.title)
         tvContentIemNews.text = getString(newsModel.content)
         imgNews.setImageDrawable(ContextCompat.getDrawable(mContext, newsModel.imgIDRes))
     }
 
-    private fun setListeners(rootView: View) {
-        rootView.btnArabicLang.setOnClickListener {
-            changeLang(Locales.Arabic)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.news_details_menu, menu)
+    }
 
-
-        }
-        rootView.btnEnglishLang.setOnClickListener {
-            changeLang(Locales.English)
-        }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return (when (item.itemId) {
+            R.id.arabic -> {
+                changeLang(Locales.Arabic)
+                true
+            }
+            R.id.english -> {
+                changeLang(Locales.English)
+                true
+            }
+            else ->
+                super.onOptionsItemSelected(item)
+        })
     }
 
     private fun changeLang(newLocale: Locale) {

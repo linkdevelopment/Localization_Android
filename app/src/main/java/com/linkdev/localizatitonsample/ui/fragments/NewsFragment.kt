@@ -5,24 +5,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
 import com.linkdev.localizatitonsample.ui.news.NewsAdapter
+import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news.*
 
 
-class NewsFragment : Fragment(), NewsAdapter.OnAdapterNewsInteraction {
+class NewsFragment : Fragment(), OnAdapterNewsInteraction {
     private lateinit var mContext: Context
-    private var onAdapterNewsInteraction: NewsAdapter.OnAdapterNewsInteraction? =
+    private var onAdapterNewsInteraction: OnAdapterNewsInteraction? =
         null
 
     companion object {
         const val TAG = "NewsFragment"
         fun newInstance(): NewsFragment {
             return NewsFragment()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            activity?.finish()
         }
     }
 
@@ -40,10 +49,10 @@ class NewsFragment : Fragment(), NewsAdapter.OnAdapterNewsInteraction {
         super.onActivityCreated(savedInstanceState)
         if (activity != null)
             mContext = this.activity as Context
-        updateNewsList()
+        loadnewsList()
     }
 
-    private fun updateNewsList() {
+    private fun loadnewsList() {
         val linearLayoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         rvNews.layoutManager = linearLayoutManager
@@ -56,7 +65,7 @@ class NewsFragment : Fragment(), NewsAdapter.OnAdapterNewsInteraction {
         super.onAttach(context)
         try {
             onAdapterNewsInteraction =
-                context as NewsAdapter.OnAdapterNewsInteraction
+                context as OnAdapterNewsInteraction
         } catch (e: Exception) {
             e.printStackTrace()
         }
