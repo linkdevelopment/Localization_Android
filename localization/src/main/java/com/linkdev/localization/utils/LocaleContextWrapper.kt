@@ -12,7 +12,7 @@ import java.util.*
  * -Update resources with new language
  * -Create configuration context and wrap it in [ContextWrapper]
  */
-class LocaleContextWrapper(base: Context?) : ContextWrapper(base) {
+internal class LocaleContextWrapper(base: Context?) : ContextWrapper(base) {
     companion object {
         @JvmStatic
         fun wrap(context: Context, language: String): ContextWrapper {

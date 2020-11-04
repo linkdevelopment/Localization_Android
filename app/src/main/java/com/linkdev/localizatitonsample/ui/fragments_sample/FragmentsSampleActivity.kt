@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import com.linkdev.localization.Localization
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.fragments.NewsDetailsFragment
-import com.linkdev.localizatitonsample.ui.fragments.NewsFragment
-import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
+import com.linkdev.localizatitonsample.ui.common.news.NewsFragment
+import com.linkdev.localizatitonsample.ui.common.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 
@@ -40,8 +39,9 @@ class FragmentsSampleActivity : AppCompatActivity(), OnAdapterNewsInteraction {
     }
 
 
-    // TODO: attach configuration context to [attachBaseContext] of consumer activity to notify it with updated resources
     override fun attachBaseContext(newBase: Context) {
+        // TODO:Call [Localization.onAttach()] to attach configuration context to [attachBaseContext] of consumer activity
+        //  to notify it with updated resources
         super.attachBaseContext(Localization.onAttach(newBase))
     }
 

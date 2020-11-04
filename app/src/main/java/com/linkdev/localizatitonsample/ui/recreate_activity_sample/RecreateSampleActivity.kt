@@ -8,11 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.linkdev.localization.Localization
 import com.linkdev.localization.data.models.Locales
-import com.linkdev.localization.data.shared_prefrences.LocalizationPrefsDataSource
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.news.NewsAdapter
-import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
+import com.linkdev.localizatitonsample.ui.common.news.NewsAdapter
+import com.linkdev.localizatitonsample.ui.common.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -50,7 +49,7 @@ class RecreateSampleActivity : AppCompatActivity(), OnAdapterNewsInteraction {
         val linearLayoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvNews.layoutManager = linearLayoutManager
-        val newsAdapter = NewsAdapter(this, UIUtils.createNewsList(), this, false)
+        val newsAdapter = NewsAdapter(this, UIUtils.createNewsList(), this)
         rvNews.adapter = newsAdapter
     }
 
@@ -62,7 +61,7 @@ class RecreateSampleActivity : AppCompatActivity(), OnAdapterNewsInteraction {
     }
 
     private fun getReversedLocale(): Locale {
-        return if (LocalizationPrefsDataSource.init(this).getLanguage() == Locales.Arabic.language
+        return if (Localization.getLanguage() == Locales.Arabic.language
         ) {
             Locales.English
         } else {
@@ -70,9 +69,9 @@ class RecreateSampleActivity : AppCompatActivity(), OnAdapterNewsInteraction {
         }
     }
 
-    //todo here we need to pass new context to attachBaseContext that has been created by
-    // configuration context with new locale
     override fun attachBaseContext(newBase: Context) {
+        // TODO:Call [Localization.onAttach()] to attach configuration context to [attachBaseContext] of consumer activity
+        //  to notify it with updated resources
         super.attachBaseContext(Localization.onAttach(newBase))
     }
 

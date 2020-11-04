@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.fragments
+package com.linkdev.localizatitonsample.ui.fragments_sample
 
 import android.content.Context
 import android.os.Bundle
@@ -9,7 +9,6 @@ import com.linkdev.localization.Localization
 import com.linkdev.localization.data.models.Locales
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.fragments_sample.FragmentsSampleActivity
 import kotlinx.android.synthetic.main.layout_news_details.*
 import java.util.*
 
@@ -21,7 +20,8 @@ class NewsDetailsFragment : Fragment() {
         const val NEWS_MODEL_TAG = "NEWS_MODEL_TAG"
         const val TAG = "NewsDetailsFragment"
         fun newInstance(newsModel: NewsModel): NewsDetailsFragment {
-            val newsFragment = NewsDetailsFragment()
+            val newsFragment =
+                NewsDetailsFragment()
             val bundle = Bundle()
             bundle.putParcelable(NEWS_MODEL_TAG, newsModel)
             newsFragment.arguments = bundle

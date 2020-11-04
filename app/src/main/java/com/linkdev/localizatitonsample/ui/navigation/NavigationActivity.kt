@@ -63,9 +63,10 @@ class NavigationActivity : AppCompatActivity() {
         findNavController(R.id.navHostFragment).navigate(deepLink)
     }
 
-    // TODO: attach configuration context to [attachBaseContext] of consumer activity to notify it with updated resources
 
     override fun attachBaseContext(newBase: Context) {
+        // TODO:Call [Localization.onAttach()] to attach configuration context to [attachBaseContext] of consumer activity
+        //  to notify it with updated resources
         super.attachBaseContext(Localization.onAttach(newBase))
     }
 }

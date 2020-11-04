@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.news
+package com.linkdev.localizatitonsample.ui.common.news
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,8 +12,7 @@ import kotlinx.android.synthetic.main.item_news.view.*
 
 class NewsAdapter(
     private val context: Context, private val mData: List<NewsModel>,
-    private val onAdapterNewsInteraction: OnAdapterNewsInteraction?,
-    private val showArrowDetails: Boolean = true
+    private val onAdapterNewsInteraction: OnAdapterNewsInteraction?
 ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -56,11 +55,6 @@ class NewsAdapter(
                     newsModel.imgIDRes
                 )
             )
-            if (showArrowDetails) {
-                itemView.imgArrowItemNews.visibility = View.VISIBLE
-            } else {
-                itemView.imgArrowItemNews.visibility = View.GONE
-            }
         }
 
         private fun onItemClicked(newsModel: NewsModel) {

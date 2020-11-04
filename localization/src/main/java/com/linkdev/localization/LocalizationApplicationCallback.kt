@@ -8,7 +8,7 @@ import android.os.LocaleList
 import com.linkdev.localization.data.shared_prefrences.LocalizationPrefsDataSource
 import java.util.*
 
-class LocalizationApplicationCallback(private val context: Context) :
+internal class LocalizationApplicationCallback(private val context: Context) :
     ComponentCallbacks {
     /*
      *When configuration changed in device "User changes device lang or make device landscape...etc"
@@ -28,8 +28,8 @@ class LocalizationApplicationCallback(private val context: Context) :
      */
     private fun onConfigurationChange(context: Context, newConfig: Configuration) {
         val configuration: Configuration? = newConfig
-        if (LocalizationPrefsDataSource.init(context).getLanguage().isNotEmpty()) {
-            val newLocale = Locale(LocalizationPrefsDataSource.init(context).getLanguage())
+        if (Localization.getLanguage().isNotEmpty()) {
+            val newLocale = Locale(Localization.getLanguage())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 configuration?.apply {
                     val localeList = LocaleList(newLocale)

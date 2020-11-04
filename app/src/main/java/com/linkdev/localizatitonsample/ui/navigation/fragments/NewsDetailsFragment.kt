@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.fragments
+package com.linkdev.localizatitonsample.ui.navigation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.layout_news_details.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
 import java.util.*
 
-class NavNewsDetailsFragment : Fragment() {
+class NewsDetailsFragment : Fragment() {
 
 
     protected lateinit var mContext: Context
@@ -64,7 +64,7 @@ class NavNewsDetailsFragment : Fragment() {
     }
 
     private fun loadNewsDetails() {
-        val args: NavNewsDetailsFragmentArgs by navArgs()
+        val args: NewsDetailsFragmentArgs by navArgs()
         val newsModel = args.newsModel
         tvTitleNews.text = getString(newsModel.title)
         tvContentIemNews.text = getString(newsModel.content)

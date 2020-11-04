@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.fragments
+package com.linkdev.localizatitonsample.ui.navigation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.news.NewsAdapter
-import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
+import com.linkdev.localizatitonsample.ui.common.news.NewsAdapter
+import com.linkdev.localizatitonsample.ui.common.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*

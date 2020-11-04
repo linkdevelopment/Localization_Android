@@ -11,7 +11,7 @@ import com.linkdev.localization.Localization
 import com.linkdev.localization.data.models.Locales
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.fragments.NewsDetailsFragment
+import com.linkdev.localizatitonsample.ui.fragments_sample.NewsDetailsFragment
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news_details.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -76,9 +76,9 @@ class NewsDetailsActivity : AppCompatActivity() {
         )
     }
 
-    // TODO: attach configuration context to [attachBaseContext] of consumer activity to notify it with updated resources
-
     override fun attachBaseContext(newBase: Context) {
+        // TODO:Call [Localization.onAttach()] to attach configuration context to [attachBaseContext] of consumer activity
+        //  to notify it with updated resources
         super.attachBaseContext(Localization.onAttach(newBase))
     }
 

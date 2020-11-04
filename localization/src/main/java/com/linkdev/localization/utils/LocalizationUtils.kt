@@ -2,10 +2,11 @@ package com.linkdev.localization.utils
 
 import android.content.Context
 import android.text.TextUtils
+import com.linkdev.localization.data.models.ErrorMessages.MSG_LOCALIZATION_UTILS_UPDATE_RES_ERROR
 import java.util.*
 
 
-object LocalizationUtils {
+internal object LocalizationUtils {
 
     /**
      * Will call [changeAppLanguage] method to apply new locale to resources
@@ -35,8 +36,7 @@ object LocalizationUtils {
                 config.setLocale(locale)
             }
         } catch (e: Exception) {
-            e.printStackTrace()
-            LocalizationLogger.error(e)
+            LocalizationLogger.error(e, MSG_LOCALIZATION_UTILS_UPDATE_RES_ERROR)
         }
     }
 

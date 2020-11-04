@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.fragments
+package com.linkdev.localizatitonsample.ui.navigation.fragments
 
 import android.content.Context
 import android.os.Bundle

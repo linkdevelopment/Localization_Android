@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.fragments
+package com.linkdev.localizatitonsample.ui.navigation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.linkdev.localization.Localization
 import com.linkdev.localization.data.models.Locales
-import com.linkdev.localization.data.shared_prefrences.LocalizationPrefsDataSource
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
 import com.linkdev.localizatitonsample.utils.Constants
@@ -59,7 +58,7 @@ class SettingsFragment : Fragment() {
         if (activity != null)
             mContext = this.activity as Context
 
-        currentLocale = LocalizationPrefsDataSource.init(mContext).getLocale()
+        currentLocale = Localization.getLocale()
         onSetSelectionCurrentLanguage(currentLocale.language)
         setToolbar(mContext, toolBar, getString(R.string.settings), false)
         setListeners()

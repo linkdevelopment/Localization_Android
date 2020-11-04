@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.linkdev.localization.Localization
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.news.NewsAdapter
-import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
+import com.linkdev.localizatitonsample.ui.common.news.NewsAdapter
+import com.linkdev.localizatitonsample.ui.common.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -31,6 +31,8 @@ class NewsActivity : AppCompatActivity(), OnAdapterNewsInteraction {
     }
 
     override fun attachBaseContext(newBase: Context) {
+        // TODO:Call [Localization.onAttach()] to attach configuration context to [attachBaseContext] of consumer activity
+        //  to notify it with updated resources
         super.attachBaseContext(Localization.onAttach(newBase))
     }
 

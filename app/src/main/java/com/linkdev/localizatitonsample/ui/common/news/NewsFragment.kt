@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.fragments
+package com.linkdev.localizatitonsample.ui.common.news
 
 import android.content.Context
 import android.os.Bundle
@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
-import com.linkdev.localizatitonsample.ui.news.NewsAdapter
-import com.linkdev.localizatitonsample.ui.news.OnAdapterNewsInteraction
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news.*
 

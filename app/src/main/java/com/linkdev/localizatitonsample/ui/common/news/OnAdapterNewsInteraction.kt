@@ -1,4 +1,4 @@
-package com.linkdev.localizatitonsample.ui.news
+package com.linkdev.localizatitonsample.ui.common.news
 
 import com.linkdev.localizatitonsample.data.NewsModel
 

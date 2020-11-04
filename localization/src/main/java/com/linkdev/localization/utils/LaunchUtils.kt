@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 
-object LaunchUtils {
+internal object LaunchUtils {
     /**
      *Will create intent with flags or bundle, start new activity[destinationActivityClass] and finish [currentActivity]
      *@param currentActivity context of current activity

@@ -4,7 +4,7 @@ import java.util.*
 
 object Locales {
     val Afrikaans: Locale by lazy { Locale("af") }
-    val Albanian: Locale by lazy { Locale("sq" ) }
+    val Albanian: Locale by lazy { Locale("sq") }
     val Arabic: Locale by lazy { Locale("ar") }
     val Armenian: Locale by lazy { Locale("hy") }
     val Belarus: Locale by lazy { Locale("be") }
