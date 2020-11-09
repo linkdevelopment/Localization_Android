@@ -20,6 +20,10 @@ internal class LocalizationPrefsDataSource(context: Context) : LocalizationIPref
         private const val LOCALIZATION_COUNTRY_JSON_KEY = "LOCALIZATION_COUNTRY_JSON_KEY"
     }
 
+    /**
+     * Will return the saved locale from prefs
+     * And if it is null or blank will return default locale
+     */
     override fun getLocale(): Locale {
         return if (!prefs.getString(LOCALIZATION_LANGUAGE_KEY, null).isNullOrBlank()) {
             val json = JSONObject(prefs.getString(LOCALIZATION_LANGUAGE_KEY, null)!!)
@@ -31,10 +35,17 @@ internal class LocalizationPrefsDataSource(context: Context) : LocalizationIPref
         }
     }
 
+    /**
+     * Will return the saved language
+     */
     override fun getLanguage(): String {
         return getLocale().language
     }
 
+    /**
+     * Call to save language and country in prefs
+     * @param locale the new locale will be saved
+     */
     override fun setLocale(locale: Locale) {
         val json = JSONObject().apply {
             put(LOCALIZATION_LANGUAGE_JSON_KEY, locale.language)
