@@ -46,6 +46,8 @@ class MenuActivity : AppCompatActivity(), OnAdapterNewsInteraction {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menuMore -> {
+                // TODO: Call [reverseLangAndRestart] to reverse the language, if the previous language was Arabic,
+                //  then it will be modified to English the vice versa
                 Localization.reverseLangAndRestart(this, MenuActivity::class.java)
                 return true
             }

@@ -68,6 +68,7 @@ class NewsDetailsActivity : AppCompatActivity() {
     }
 
     private fun changeLang(newLocale: Locale) {
+        // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             this,
             newLocale,

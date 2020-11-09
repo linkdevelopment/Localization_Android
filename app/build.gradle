@@ -10,8 +10,8 @@ android {
         release {
             storeFile file("../keystore/keystore.jks")
             storePassword 'localization123456'
-            keyAlias 'keyAlias'
-            keyPassword 'localizationalias'
+            keyAlias 'localizationAlias'
+            keyPassword 'localization123456'
         }
     }
     defaultConfig {

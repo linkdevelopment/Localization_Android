@@ -102,6 +102,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun changeLang(newLocale: Locale) {
+        // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             activity,
             newLocale,
