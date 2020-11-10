@@ -119,6 +119,8 @@ object Localization {
     /**
      * Will store locale in prefs and
      * Update resources with new locale
+     * @param context context of current activity
+     * @param locale the new locale
      */
     private fun setLocalAndApply(context: Context, locale: Locale) {
         check(localizationPrefsDataSource != null) { LocalizationLogger.error(msg = MSG_PREFS_NULL) }
@@ -128,6 +130,7 @@ object Localization {
 
     /**
      * Will check saved and new locale and returns {true} if they are the same
+     * @param newLang the language will be compared with stored language
      */
     private fun isDifferentLocale(newLang: String): Boolean {
         return newLang != getLanguage()
@@ -136,6 +139,7 @@ object Localization {
     /**
      * Will create configuration context with save locale
      * to be passed to {attachBaseContext} of consumer activity
+     * @param context context of current activity
      */
     fun onAttach(context: Context): ContextWrapper {
         return LocaleContextWrapper.wrap(

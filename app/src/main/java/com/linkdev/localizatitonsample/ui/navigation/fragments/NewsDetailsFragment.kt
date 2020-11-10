@@ -78,17 +78,9 @@ class NewsDetailsFragment : Fragment() {
             activity,
             newLocale,
             NavigationActivity::class.java,
-            bundle = getNavNewsDetailsBundle()
+
         )
     }
 
-    private fun getNavNewsDetailsBundle(): Bundle {
-        val bundle = Bundle()
-        bundle.putInt(
-            Constants.Extras.CHANGE_LANGUAGE_REDIRECTION,
-            R.id.home
-        )
-        return bundle
-    }
 
 }

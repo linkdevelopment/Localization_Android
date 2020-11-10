@@ -19,22 +19,18 @@ internal object LocalizationLogger {
     }
 
     /**
-     * Call to print stack trace and specific warning message with tag "LOCALIZATION"
-     * @param exception the exception object
+     * Call to print specific warning message with tag "LOCALIZATION"
      * @param msg the warning message
      */
-    fun warn(exception: Throwable, msg: String) {
-        exception.printStackTrace()
+    fun warn(msg: String) {
         Log.w(LOCALIZATION, msg)
     }
 
     /**
-     * Call to print stack trace and specific info message with tag "LOCALIZATION"
-     * @param exception the exception object
+     * Call to print specific info message with tag "LOCALIZATION"
      * @param msg the info message
      */
-    fun info(exception: Throwable, msg: String) {
-        exception.printStackTrace()
+    fun info(msg: String) {
         Log.i(LOCALIZATION, msg)
     }
 }
