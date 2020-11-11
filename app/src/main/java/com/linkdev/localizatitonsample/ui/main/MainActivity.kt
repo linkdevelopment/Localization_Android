@@ -8,7 +8,6 @@ import com.linkdev.localizatitonsample.ui.activities_sample.NewsActivity
 import com.linkdev.localizatitonsample.ui.fragments_sample.FragmentsSampleActivity
 import com.linkdev.localizatitonsample.ui.menu_activity.MenuActivity
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
-import com.linkdev.localizatitonsample.ui.recreate_activity_sample.RecreateSampleActivity
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         btnActivitiesSample.setOnClickListener { navigateToActivitiesSample() }
         btnFragmentsSample.setOnClickListener { navigateToFragmentsSample() }
         btnMenuSample.setOnClickListener { navigateToMenuSample() }
-        btnRecreateActivitySample.setOnClickListener { navigateToRecreateActivitySample() }
     }
 
     private fun navigateToNavigationSample() {
@@ -57,10 +55,5 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun navigateToRecreateActivitySample() {
-        startActivity(
-            Intent(this, RecreateSampleActivity::class.java)
-        )
-    }
 
 }

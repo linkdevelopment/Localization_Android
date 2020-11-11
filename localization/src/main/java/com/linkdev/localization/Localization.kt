@@ -73,26 +73,6 @@ object Localization {
      * 1-If the new and saved locale are the same the method will return and will not perform any action
      *
      * 2-If the new and saved local are different,
-     * -Update the prefs with the new lang
-     * -Update the resources configuration
-     * -And recreate activity with new lang
-     *  @param currentActivity the object of the current activity
-     *  @param locale the new locale
-     *  @param bundle pass data to [currentActivity]
-     **/
-    fun setLocaleAndRecreate(currentActivity: Activity?, locale: Locale, bundle: Bundle? = null) {
-        check(currentActivity != null) { LocalizationLogger.error(msg = MSG_ACTIVITY_NULL) }
-        if (!isDifferentLocale(locale.language)) return
-
-        setLocalAndApply(currentActivity, locale)
-        LaunchUtils.recreateActivity(currentActivity, bundle)
-    }
-
-    /**
-     * Will check on the saved language and perform the following actions
-     * 1-If the new and saved locale are the same the method will return and will not perform any action
-     *
-     * 2-If the new and saved local are different,
      * -update the prefs with the new lang
      * -update the resources configuration
      * -navigate to the new activity and restart app

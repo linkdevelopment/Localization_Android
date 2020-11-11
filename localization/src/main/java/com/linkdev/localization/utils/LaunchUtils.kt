@@ -28,13 +28,4 @@ internal object LaunchUtils {
         currentActivity.finish()
     }
 
-    /**
-     *Will recreate the [currentActivity]
-     *@param currentActivity the object of the current activity
-     *@param bundle the new arguments
-     */
-    fun recreateActivity(currentActivity: Activity, bundle: Bundle?) {
-        currentActivity.intent.replaceExtras(bundle)
-        currentActivity.recreate()
-    }
 }

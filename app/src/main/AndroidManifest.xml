@@ -22,7 +22,6 @@
         <activity android:name=".ui.fragments_sample.FragmentsSampleActivity" />
         <activity android:name=".ui.navigation.NavigationActivity" />
         <activity android:name=".ui.menu_activity.MenuActivity" />
-        <activity android:name=".ui.recreate_activity_sample.RecreateSampleActivity" />
     </application>
 
 </manifest>
