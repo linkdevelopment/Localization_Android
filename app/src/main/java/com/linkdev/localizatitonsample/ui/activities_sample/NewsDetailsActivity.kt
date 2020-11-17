@@ -75,12 +75,12 @@ class NewsDetailsActivity : AppCompatActivity() {
             NewsActivity::class.java,
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         )
-}
+    }
 
     override fun attachBaseContext(newBase: Context) {
         // TODO:Call [Localization.onAttach()] to attach configuration context to [attachBaseContext] of consumer activity
         //  to notify it with updated resources
-        super.attachBaseContext(Localization.onAttach(newBase))
+        super.attachBaseContext(Localization.onAttach(this, newBase))
     }
 
 

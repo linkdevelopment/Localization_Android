@@ -48,9 +48,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
-    //Please don't upgrade to appcompat as it have issue in locale in android versions below 9
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     //nav
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.1"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.1"
