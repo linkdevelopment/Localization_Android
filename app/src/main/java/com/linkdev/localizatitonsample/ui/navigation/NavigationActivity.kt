@@ -67,6 +67,6 @@ class NavigationActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context) {
         // TODO:Call [Localization.onAttach()] to attach configuration context to [attachBaseContext] of consumer activity
         //  to notify it with updated resources
-        super.attachBaseContext(Localization.onAttach(newBase))
+        super.attachBaseContext(Localization.onAttach(this, newBase))
     }
 }

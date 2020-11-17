@@ -10,7 +10,6 @@ import com.linkdev.localization.Localization
 import com.linkdev.localization.data.models.Locales
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
-import com.linkdev.localizatitonsample.utils.Constants
 import com.linkdev.localizatitonsample.utils.UIUtils.setToolbar
 import kotlinx.android.synthetic.main.layout_news_details.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
@@ -79,7 +78,7 @@ class NewsDetailsFragment : Fragment() {
             newLocale,
             NavigationActivity::class.java,
 
-        )
+            )
     }
 
 

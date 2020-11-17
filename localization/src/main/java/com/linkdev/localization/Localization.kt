@@ -119,13 +119,17 @@ object Localization {
     /**
      * Will create configuration context with save locale
      * to be passed to {attachBaseContext} of consumer activity
+     * And call applyOverrideConfiguration(Configuration) to apply the new configuration to resources with the new {contextWrapper}
+     * @param currentActivity the object of the current activity
      * @param context context of current activity
      */
-    fun onAttach(context: Context): ContextWrapper {
-        return LocaleContextWrapper.wrap(
+    fun onAttach(currentActivity: Activity, context: Context): ContextWrapper {
+        val contextWrapper = LocaleContextWrapper.wrap(
             context,
             getLanguage()
         )
+        currentActivity.applyOverrideConfiguration(contextWrapper.resources.configuration)
+        return contextWrapper
     }
 
     /**
