@@ -64,6 +64,7 @@ And pass current activity and new base context to Localization.onAttach() method
 >    * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
 >    * **flags** : The inten intentt flags and it is **opational**
 
+
 * Call **Localization.reverseLangAndRestart()** method to reverse the language, if the previous language was Arabic, then it will be modified to English the vice versa.
 
 ```kotlin
@@ -79,6 +80,7 @@ And pass current activity and new base context to Localization.onAttach() method
 >    * **destinationActivityClass** : The new activity will be redirect after change locale and it is **required**
 >    * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
 >    * **flags** : The inten intentt flags and it is **opational**
+
 
 * Call Localization.setLocale() method to handle the language and configuration changes, but leaves the application restart to the consumer app.
 ```kotlin
@@ -97,11 +99,13 @@ And pass current activity and new base context to Localization.onAttach() method
     val currentSavedLocale = Localization.getLocale()
 ```
 
+
 * Call **Localization.getLanguage()** method to get current saved language.
 
 ```kotlin
     val currentSavedLanguage = Localization.getLanguage()
 ```
+
 
 ## License
 Copyright 2020 Link Development
