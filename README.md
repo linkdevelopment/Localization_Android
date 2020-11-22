@@ -29,7 +29,7 @@ below
 
 
 ## Usage
-How to use
+##### How to initialize
 
 1. Call **Localization.initialize()** method in Application class of consumer APP to initialize localization
 ```kotlin
@@ -44,7 +44,9 @@ How to use
 ```
 And pass current activity and new base context to Localization.onAttach() method.
 
-3. Call **Localization.setLocaleAndRestart()** to change app language with new locale and restart.
+##### How to use
+
+* Call **Localization.setLocaleAndRestart()** to change app language with new locale and restart.
 ```kotlin
    Localization.setLocaleAndRestart(
             currentActivity,
@@ -62,7 +64,7 @@ And pass current activity and new base context to Localization.onAttach() method
     * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
     * **flags** : The inten intentt flags and it is **opational**
 
-4. Call **Localization.reverseLangAndRestart()** method to reverse the language, if the previous language was Arabic, then it will be modified to English the vice versa
+* Call **Localization.reverseLangAndRestart()** method to reverse the language, if the previous language was Arabic, then it will be modified to English the vice versa
 
 ```kotlin
    Localization.reverseLangAndRestart(
@@ -78,7 +80,7 @@ And pass current activity and new base context to Localization.onAttach() method
     * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
     * **flags** : The inten intentt flags and it is **opational**
 
-5. Call Localization.setLocale() method to handle the language and configuration changes, but leaves the application restart to the consumer app
+* Call Localization.setLocale() method to handle the language and configuration changes, but leaves the application restart to the consumer app
 ```kotlin
    Localization.setLocale(
        context, 
@@ -90,12 +92,12 @@ And pass current activity and new base context to Localization.onAttach() method
     * **newLocale** : New locale will be applied and it is **required**
 
 
-6. Call **Localization.getLocale()** method to get current saved locale
+* Call **Localization.getLocale()** method to get current saved locale
 ```kotlin
     val currentSavedLocale = Localization.getLocale()
 ```
 
-7. Call **Localization.getLanguage()** method to get current saved language
+* Call **Localization.getLanguage()** method to get current saved language
 ```kotlin
     val currentSavedLanguage = Localization.getLanguage()
 ```
