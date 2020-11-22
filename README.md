@@ -16,7 +16,7 @@ below
 
 1. Open your project in Android Studio
 2. Download the library (using Git, or a zip archive to unzip)
-3. Go to File > Import Module and import the library as a module
+3. Go to File >New > Import Module and import the library as a module
 4. Right-click your app in project view and select "Open Module Settings"
 5. Click the "Dependencies" tab and then the '+' button
 6. Select "Module Dependency"
