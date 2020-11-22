@@ -29,9 +29,9 @@ below
 
 
 ## Usage
-##### How to initialize
+### How to initialize
 
-1. Call **Localization.initialize()** method in Application class of consumer APP to initialize localization
+1. Call **Localization.initialize()** method in Application class of consumer APP to initialize localization.
 ```kotlin
    Localization.initialize(this)
 ```
@@ -44,7 +44,7 @@ below
 ```
 And pass current activity and new base context to Localization.onAttach() method.
 
-##### How to use
+### How to use
 
 * Call **Localization.setLocaleAndRestart()** to change app language with new locale and restart.
 ```kotlin
@@ -57,14 +57,14 @@ And pass current activity and new base context to Localization.onAttach() method
         )
 ```
 
-* **Params**
-    * **currentActivity** : Current activity and it is **required**
-    * **newLocale** : New locale will be applied and it is **required**
-    * **destinationActivityClass** : The new activity will be redirect after change locale and it is **required**
-    * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
-    * **flags** : The inten intentt flags and it is **opational**
+>  **Params**
+>    * **currentActivity** : Current activity and it is **required**
+>    * **newLocale** : New locale will be applied and it is **required**
+>    * **destinationActivityClass** : The new activity will be redirect after change locale and it is **required**
+>    * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
+>    * **flags** : The inten intentt flags and it is **opational**
 
-* Call **Localization.reverseLangAndRestart()** method to reverse the language, if the previous language was Arabic, then it will be modified to English the vice versa
+* Call **Localization.reverseLangAndRestart()** method to reverse the language, if the previous language was Arabic, then it will be modified to English the vice versa.
 
 ```kotlin
    Localization.reverseLangAndRestart(
@@ -74,30 +74,31 @@ And pass current activity and new base context to Localization.onAttach() method
         flags
     )
 ```
-* **Params**
-    * **currentActivity** : Current activity and it is **required**
-    * **destinationActivityClass** : The new activity will be redirect after change locale and it is **required**
-    * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
-    * **flags** : The inten intentt flags and it is **opational**
+>  **Params**
+>    * **currentActivity** : Current activity and it is **required**
+>    * **destinationActivityClass** : The new activity will be redirect after change locale and it is **required**
+>    * **bundle** : If you want to pass data between currentActivity and destinationActivityClass and it is **optional**
+>    * **flags** : The inten intentt flags and it is **opational**
 
-* Call Localization.setLocale() method to handle the language and configuration changes, but leaves the application restart to the consumer app
+* Call Localization.setLocale() method to handle the language and configuration changes, but leaves the application restart to the consumer app.
 ```kotlin
    Localization.setLocale(
        context, 
        newLocale
     )
 ```
-* **Params**
-    * **context** : The current context and it is **required**
-    * **newLocale** : New locale will be applied and it is **required**
+>  **Params**
+>    * **context** : The current context and it is **required**
+>    * **newLocale** : New locale will be applied and it is **required**
 
 
-* Call **Localization.getLocale()** method to get current saved locale
+* Call **Localization.getLocale()** method to get current saved locale.
 ```kotlin
     val currentSavedLocale = Localization.getLocale()
 ```
 
-* Call **Localization.getLanguage()** method to get current saved language
+* Call **Localization.getLanguage()** method to get current saved language.
+
 ```kotlin
     val currentSavedLanguage = Localization.getLanguage()
 ```
