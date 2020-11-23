@@ -10,29 +10,34 @@ Localization is an easy to use library that will handle localization for you in 
 
 ## Setup
 
-Either use Gradle:
+Use Gradle:
 ```
-
+implementation 'com.linkdev.localization:localization:1.0.0'
 ```
 or Maven:
 ```
-
+<dependency>
+  <groupId>com.linkdev.localization</groupId>
+  <artifactId>localization</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
 ```
 
 ## Usage
 ### How to initialize
 
-1. Add the supports rtl flag to the manifest if the consuming app needs to support rtl languages.
+1. Add the supports rtl flag to the manifest of the consuming app needs to support rtl languages.
 ```xml
   android:supportsRtl="true"
 ```
 
-2. Call **Localization.initialize()** method in your application class and pass the application object of consumer APP to initialize localization.
+2. Call **Localization.initialize()** method in your application class and pass the application object of the consumer APP to initialize localization.
 ```kotlin
    Localization.initialize(this)
 ```
 
-3. Call **Localization.onAttach()** method in consumer activity or in your base activity to notify it with updated resources and pass current activity and new base context to Localization.onAttach() method..
+3. Call **Localization.onAttach()** method in consumer activity or in your base activity to notify it with the updated resources and pass the current activity and new base context to Localization.onAttach() method..
 
 ```kotlin
   override fun attachBaseContext(newBase: Context) {
@@ -55,9 +60,15 @@ or Maven:
 
 >  **Params**
 >    * **currentActivity** : Current activity and it is **required**
->    * **newLocale** : New locale will be applied and it is **required** and you can create it with our custom **Locales** class like that :
+>    * **newLocale** : New locale object that will be applied and it is **required**, You can create it by two ways:
+> 1. Create it by using our custom **Locales** class:
 > >```kotlin
-> >Locales.Arabic
+> > val newLocale =Locales.Arabic
+> >```
+>
+> 2. Create it by predefined locale class:
+> >```kotlin
+> > val newLocale =Locale("ar")
 > >```
 >    * **destinationActivityClass** : The new activity you would like to navigate to after locale change and it is **required**
 >    * **bundle** : If you need to pass data between currentActivity and destinationActivityClass and it is **optional**
@@ -90,24 +101,36 @@ or Maven:
 ```
 >  **Params**
 >    * **context** : The current context and it is **required**
->    * **newLocale** : New locale will be applied and it is **required** and you can create it with our custom **Locales** class like that :
+>    * **newLocale** : New locale object that will be applied and it is **required**, You can create it by two ways:
+> 1. Create it by using our custom **Locales** class:
 > >```kotlin
-> >Locales.Arabic
+> > val newLocale =Locales.Arabic
+> >```
+>
+> 2. Create it by predefined locale class:
+> >```kotlin
+> > val newLocale =Locale("ar")
 > >```
 
 
-* Call **Localization.getLocale()** method to get current saved locale.
+* Call **Localization.getLocale()** method to get the current saved locale.
 ```kotlin
     val currentSavedLocale = Localization.getLocale()
 ```
 
 
-* Call **Localization.getLanguage()** method to get current saved language.
+* Call **Localization.getLanguage()** method to get the current saved language.
 
 ```kotlin
     val currentSavedLanguage = Localization.getLanguage()
 ```
 
+* **Locales.kt**
+
+In java.util.Locale class doesn't contain all the Locales so Locales provides the missing ones for easy access.
+```kotlin
+ Locales.Arabic
+```
 
 ## License
 Copyright 2020 Link Development
