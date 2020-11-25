@@ -27,7 +27,7 @@ or Maven:
 ## Usage
 ### How to initialize
 
-1. Add the supports rtl flag to the manifest of the consuming app needs to support rtl languages.
+1. Add the supports rtl flag to the manifest of the consuming app if you need to to support rtl languages.
 ```xml
   android:supportsRtl="true"
 ```
@@ -47,7 +47,7 @@ or Maven:
 
 ### How to use
 
-* Call **Localization.setLocaleAndRestart()** to change app language in whatever place in your application you would like to change it with new locale and restart.
+* Call **Localization.setLocaleAndRestart()** to change the app language in whatever place in your application you would like to change it with new locale and restart.
 ```kotlin
    Localization.setLocaleAndRestart(
             currentActivity,
@@ -59,20 +59,24 @@ or Maven:
 ```
 
 >  **Params**
->    * **currentActivity** : Current activity and it is **required**
->    * **newLocale** : New locale object that will be applied and it is **required**, You can create it by two ways:
-> 1. Create it by using our custom **Locales** class:
-> >```kotlin
-> > val newLocale =Locales.Arabic
-> >```
+>   * **currentActivity** : Current activity and it is **required**
+>   * **newLocale** : New locale object that will be applied and it is **required**, you can create it using one of the following methods:
+>        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
 >
-> 2. Create it by predefined locale class:
-> >```kotlin
-> > val newLocale =Locale("ar")
-> >```
->    * **destinationActivityClass** : The new activity you would like to navigate to after locale change and it is **required**
->    * **bundle** : If you need to pass data between currentActivity and destinationActivityClass and it is **optional**
->    * **flags** : The intent flags and it is **optional**
+>        ``` kotlin
+>                            val newLocale = Locales.English
+>                            val newLocale = Locales.French
+>                            val newLocale = Locales.Arabic
+>        ```
+>
+>        2. By creating a new local object:
+>
+>        ``` kotlin
+>                            val newLocale = Locale("ar")
+>        ```
+>   * **destinationActivityClass** : The new activity you would like to navigate to after locale change and it is **required**
+>   * **bundle** : If you need to pass data between currentActivity and destinationActivityClass and it is **optional**
+>   * **flags** : The intent flags and it is **optional**
 
 
 * Call **Localization.reverseLangAndRestart()** method to reverse the current language of your application, if the previous language was Arabic, then it will be modified to English the vice versa.
@@ -86,10 +90,10 @@ or Maven:
     )
 ```
 >  **Params**
->    * **currentActivity** : Current activity and it is **required**
->    * **destinationActivityClass** : The new activity you would like to navigate to after locale change and it is **required**
->    * **bundle** : If you need to pass data between currentActivity and destinationActivityClass and it is **optional**
->    * **flags** : The intent flags and it is **optional**
+>   * **currentActivity** : Current activity and it is **required**
+>   * **destinationActivityClass** : The new activity you would like to navigate to after locale change and it is **required**
+>   * **bundle** : If you need to pass data between currentActivity and destinationActivityClass and it is **optional**
+>   * **flags** : The intent flags and it is **optional**
 
 
 * Call Localization.setLocale() method to handle the language and configuration changes, but leaves the application restart to the consumer app.
@@ -100,18 +104,22 @@ or Maven:
     )
 ```
 >  **Params**
->    * **context** : The current context and it is **required**
->    * **newLocale** : New locale object that will be applied and it is **required**, You can create it by two ways:
-> 1. Create it by using our custom **Locales** class:
-> >```kotlin
-> > val newLocale =Locales.Arabic
-> >```
+>   * **context** : The current context and it is **required**
+>   * **newLocale** : New locale object that will be applied and it is **required**, you can create it using one of the following methods:
 >
-> 2. Create it by predefined locale class:
-> >```kotlin
-> > val newLocale =Locale("ar")
-> >```
-
+>        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
+>
+>        ``` kotlin
+>                            val newLocale = Locales.English
+>                            val newLocale = Locales.French
+>                            val newLocale = Locales.Arabic
+>        ```
+>
+>        2. By creating a new local object:
+>
+>        ``` kotlin
+>                            val newLocale = Locale("ar")
+>        ```
 
 * Call **Localization.getLocale()** method to get the current saved locale.
 ```kotlin
@@ -123,13 +131,6 @@ or Maven:
 
 ```kotlin
     val currentSavedLanguage = Localization.getLanguage()
-```
-
-* **Locales.kt**
-
-In java.util.Locale class doesn't contain all the Locales so Locales provides the missing ones for easy access.
-```kotlin
- Locales.Arabic
 ```
 
 ## License
