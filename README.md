@@ -79,7 +79,7 @@ or Maven:
 >   * **flags** : The intent flags and it is **optional**
 
 
-* Call **Localization.reverseLangAndRestart()** method to reverse the current language of your application, if the previous language was Arabic, then it will be modified to English the vice versa.
+* Call **Localization.reverseLangAndRestart()** method to reverse the current language of your application, if the previous language was Arabic, then it will be modified to English and vice versa.
 
 ```kotlin
    Localization.reverseLangAndRestart(
@@ -96,7 +96,7 @@ or Maven:
 >   * **flags** : The intent flags and it is **optional**
 
 
-* Call Localization.setLocale() method to handle the language and configuration changes, but leaves the application restart to the consumer app.
+* Call **Localization.setLocale()** method to handle the language and configuration changes, but leaves the application restart to the consumer app.
 ```kotlin
    Localization.setLocale(
        context, 
