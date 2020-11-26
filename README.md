@@ -27,7 +27,7 @@ or Maven:
 ## Usage
 ### How to initialize
 
-1. Add the supports rtl flag to the manifest of the consuming app if you need to to support rtl languages.
+1. Add the supports rtl flag to the manifest of the consuming app if you need to support rtl languages.
 ```xml
   android:supportsRtl="true"
 ```
