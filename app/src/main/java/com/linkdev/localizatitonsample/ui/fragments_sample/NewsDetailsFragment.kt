@@ -66,11 +66,11 @@ class NewsDetailsFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return (when (item.itemId) {
             R.id.arabic -> {
-                changeLang(Locales.Arabic)
+                changeLang(Locales.Arabic.value)
                 true
             }
             R.id.english -> {
-                changeLang(Locales.English)
+                changeLang(Locales.English.value)
                 true
             }
             else ->

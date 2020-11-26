@@ -64,9 +64,9 @@ or Maven:
 >        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
 >
 >        ``` kotlin
->                            val newLocale = Locales.English
->                            val newLocale = Locales.French
->                            val newLocale = Locales.Arabic
+>                            val newLocale = Locales.English.value
+>                            val newLocale = Locales.French.value
+>                            val newLocale = Locales.Arabic.value
 >        ```
 >
 >        2. By creating a new local object:
@@ -110,9 +110,9 @@ or Maven:
 >        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
 >
 >        ``` kotlin
->                            val newLocale = Locales.English
->                            val newLocale = Locales.French
->                            val newLocale = Locales.Arabic
+>                            val newLocale = Locales.English.value
+>                            val newLocale = Locales.French.value
+>                            val newLocale = Locales.Arabic.value
 >        ```
 >
 >        2. By creating a new local object:

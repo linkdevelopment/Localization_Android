@@ -60,10 +60,10 @@ object Localization {
         flags: Int? = null
     ) {
         check(currentActivity != null) { LocalizationLogger.error(msg = MSG_ACTIVITY_NULL) }
-        if (getLanguage() == Locales.English.language)
-            setLocalAndApply(currentActivity, Locales.Arabic)
-        else if (getLanguage() == Locales.Arabic.language)
-            setLocalAndApply(currentActivity, Locales.English)
+        if (getLanguage() == Locales.English.value.language)
+            setLocalAndApply(currentActivity, Locales.Arabic.value)
+        else if (getLanguage() == Locales.Arabic.value.language)
+            setLocalAndApply(currentActivity, Locales.English.value)
 
         LaunchUtils.startActivity(currentActivity, destinationActivityClass, bundle, flags)
     }

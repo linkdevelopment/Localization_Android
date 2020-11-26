@@ -53,13 +53,13 @@ class NewsDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.arabic -> {
-                changeLang(Locales.Arabic)
+                changeLang(Locales.Arabic.value)
 
                 return true
             }
 
             R.id.english -> {
-                changeLang(Locales.English)
+                changeLang(Locales.English.value)
 
                 return true
             }

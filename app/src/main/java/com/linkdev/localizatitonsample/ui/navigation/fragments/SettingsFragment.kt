@@ -72,22 +72,22 @@ class SettingsFragment : Fragment() {
     }
 
     private fun onLangEnglishClicked() {
-        currentLocale = Locales.English
-        onSetSelectionCurrentLanguage(Locales.English.language)
+        currentLocale = Locales.English.value
+        onSetSelectionCurrentLanguage(Locales.English.value.language)
     }
 
     private fun onLangArabicClicked() {
-        currentLocale = Locales.Arabic
-        onSetSelectionCurrentLanguage(Locales.Arabic.language)
+        currentLocale = Locales.Arabic.value
+        onSetSelectionCurrentLanguage(Locales.Arabic.value.language)
     }
 
     private fun onSetSelectionCurrentLanguage(lang: String) {
         when (lang) {
-            Locales.Arabic.language -> {
+            Locales.Arabic.value.language -> {
                 onChangeLangText(tvLangArabic, tvLangEnglish)
 
             }
-            Locales.English.language -> {
+            Locales.English.value.language -> {
                 onChangeLangText(tvLangEnglish, tvLangArabic)
 
             }
