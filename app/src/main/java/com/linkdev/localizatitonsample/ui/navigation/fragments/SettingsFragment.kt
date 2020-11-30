@@ -20,7 +20,7 @@ import java.util.*
 class SettingsFragment : Fragment() {
 
     private lateinit var mContext: Context
-    private lateinit var currentLocale: Locale
+    private lateinit var currentLocale: Locales
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,8 +58,8 @@ class SettingsFragment : Fragment() {
         if (activity != null)
             mContext = this.activity as Context
 
-        currentLocale = Localization.getLocale()
-        onSetSelectionCurrentLanguage(currentLocale.language)
+        currentLocale = Localization.getLocales()
+        onSetSelectionCurrentLanguage(currentLocale)
         setToolbar(mContext, toolBar, getString(R.string.settings), false)
         setListeners()
 
@@ -72,22 +72,22 @@ class SettingsFragment : Fragment() {
     }
 
     private fun onLangEnglishClicked() {
-        currentLocale = Locales.English.value
-        onSetSelectionCurrentLanguage(Locales.English.value.language)
+        currentLocale = Locales.English
+        onSetSelectionCurrentLanguage(currentLocale)
     }
 
     private fun onLangArabicClicked() {
-        currentLocale = Locales.Arabic.value
-        onSetSelectionCurrentLanguage(Locales.Arabic.value.language)
+        currentLocale = Locales.Arabic
+        onSetSelectionCurrentLanguage(currentLocale)
     }
 
-    private fun onSetSelectionCurrentLanguage(lang: String) {
+    private fun onSetSelectionCurrentLanguage(lang: Locales) {
         when (lang) {
-            Locales.Arabic.value.language -> {
+            Locales.Arabic -> {
                 onChangeLangText(tvLangArabic, tvLangEnglish)
 
             }
-            Locales.English.value.language -> {
+            Locales.English -> {
                 onChangeLangText(tvLangEnglish, tvLangArabic)
 
             }
@@ -101,7 +101,7 @@ class SettingsFragment : Fragment() {
         inactiveLang.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary))
     }
 
-    private fun changeLang(newLocale: Locale) {
+    private fun changeLang(newLocale: Locales) {
         // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             activity,

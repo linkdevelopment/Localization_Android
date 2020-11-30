@@ -53,13 +53,13 @@ class NewsDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.arabic -> {
-                changeLang(Locales.Arabic.value)
+                changeLang(Locales.Arabic)
 
                 return true
             }
 
             R.id.english -> {
-                changeLang(Locales.English.value)
+                changeLang(Locales.English)
 
                 return true
             }
@@ -67,7 +67,7 @@ class NewsDetailsActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun changeLang(newLocale: Locale) {
+    private fun changeLang(newLocale: Locales) {
         // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             this,

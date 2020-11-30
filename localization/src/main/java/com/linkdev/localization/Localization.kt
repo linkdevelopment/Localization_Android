@@ -44,6 +44,18 @@ object Localization {
         setLocalAndApply(context, locale)
     }
 
+    /**
+     * Called to handle the language and configuration changes, but leaves the application restart to the consumer app
+     * and perform the following actions
+     * -update the prefs with the new lang
+     * -update the resources configuration
+     * @param context context of current activity
+     * @param locale new locale
+     */
+    fun setLocale(context: Context, locale: Locales) {
+        setLocalAndApply(context, locale)
+    }
+
 
     /**
      *-Reverse the language, if the previous language was Arabic, then it will be modified to English the vice versa and perform the following actions,
@@ -60,10 +72,10 @@ object Localization {
         flags: Int? = null
     ) {
         check(currentActivity != null) { LocalizationLogger.error(msg = MSG_ACTIVITY_NULL) }
-        if (getLanguage() == Locales.English.value.language)
-            setLocalAndApply(currentActivity, Locales.Arabic.value)
-        else if (getLanguage() == Locales.Arabic.value.language)
-            setLocalAndApply(currentActivity, Locales.English.value)
+        if (getLanguage() == Locales.English.locale.language)
+            setLocalAndApply(currentActivity, Locales.Arabic.locale)
+        else if (getLanguage() == Locales.Arabic.locale.language)
+            setLocalAndApply(currentActivity, Locales.English.locale)
 
         LaunchUtils.startActivity(currentActivity, destinationActivityClass, bundle, flags)
     }
@@ -95,6 +107,33 @@ object Localization {
         LaunchUtils.startActivity(currentActivity, destinationActivityClass, bundle, flags)
     }
 
+    /**
+     * Will check on the saved language and perform the following actions
+     * 1-If the new and saved locale are the same the method will return and will not perform any action
+     *
+     * 2-If the new and saved local are different,
+     * -update the prefs with the new lang
+     * -update the resources configuration
+     * -navigate to the new activity and restart app
+     * @param currentActivity the object of the current activity
+     * @param locale the new locale
+     * @param destinationActivityClass new activity class will navigate to
+     * @param bundle pass data between [currentActivity] and [destinationActivityClass]
+     * @param flags the intent flags
+     **/
+    fun <T : Activity> setLocaleAndRestart(
+        currentActivity: Activity?,
+        locale: Locales,
+        destinationActivityClass: Class<T>,
+        bundle: Bundle? = null,
+        flags: Int? = null
+    ) {
+        check(currentActivity != null) { LocalizationLogger.error(msg = MSG_ACTIVITY_NULL) }
+        if (!isDifferentLocale(locale.locale.language)) return
+        setLocalAndApply(currentActivity, locale)
+        LaunchUtils.startActivity(currentActivity, destinationActivityClass, bundle, flags)
+    }
+
 
     /**
      * Will store locale in prefs and
@@ -106,6 +145,18 @@ object Localization {
         check(localizationPrefsDataSource != null) { LocalizationLogger.error(msg = MSG_PREFS_NULL) }
         localizationPrefsDataSource?.setLocale(locale)
         LocalizationUtils.applyLocale(context, locale)
+    }
+
+    /**
+     * Will store locale in prefs and
+     * Update resources with new locale
+     * @param context context of current activity
+     * @param locale the new locale
+     */
+    private fun setLocalAndApply(context: Context, locale: Locales) {
+        check(localizationPrefsDataSource != null) { LocalizationLogger.error(msg = MSG_PREFS_NULL) }
+        localizationPrefsDataSource?.setLocale(locale.locale)
+        LocalizationUtils.applyLocale(context, locale.locale)
     }
 
     /**
@@ -138,6 +189,14 @@ object Localization {
     fun getLocale(): Locale {
         check(localizationPrefsDataSource != null) { LocalizationLogger.error(msg = MSG_PREFS_NULL) }
         return localizationPrefsDataSource!!.getLocale()
+    }
+
+    /**
+     * Will return the saved custom enum locales
+     */
+    fun getLocales(): Locales {
+        check(localizationPrefsDataSource != null) { LocalizationLogger.error(msg = MSG_PREFS_NULL) }
+        return Locales.getLocale(localizationPrefsDataSource!!.getLanguage())
     }
 
     /**

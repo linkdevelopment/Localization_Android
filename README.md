@@ -64,9 +64,9 @@ or Maven:
 >        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
 >
 >        ``` kotlin
->                            val newLocale = Locales.English.value
->                            val newLocale = Locales.French.value
->                            val newLocale = Locales.Arabic.value
+>                            val newLocale = Locales.English
+>                            val newLocale = Locales.French
+>                            val newLocale = Locales.Arabic
 >        ```
 >
 >        2. By creating a new local object:
@@ -110,9 +110,9 @@ or Maven:
 >        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
 >
 >        ``` kotlin
->                            val newLocale = Locales.English.value
->                            val newLocale = Locales.French.value
->                            val newLocale = Locales.Arabic.value
+>                            val newLocale = Locales.English
+>                            val newLocale = Locales.French
+>                            val newLocale = Locales.Arabic
 >        ```
 >
 >        2. By creating a new local object:
@@ -123,7 +123,12 @@ or Maven:
 
 * Call **Localization.getLocale()** method to get the current saved locale.
 ```kotlin
-    val currentSavedLocale = Localization.getLocale()
+    val currentSavedLocale: Locale = Localization.getLocale()
+```
+
+* Call **Localization.getLocales()** method to get the current saved custom enum locales.
+```kotlin
+    val currentSavedLocale: Locales = Localization.getLocales()
 ```
 
 

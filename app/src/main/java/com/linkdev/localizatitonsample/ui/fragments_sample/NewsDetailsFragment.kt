@@ -66,11 +66,11 @@ class NewsDetailsFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return (when (item.itemId) {
             R.id.arabic -> {
-                changeLang(Locales.Arabic.value)
+                changeLang(Locales.Arabic)
                 true
             }
             R.id.english -> {
-                changeLang(Locales.English.value)
+                changeLang(Locales.English)
                 true
             }
             else ->
@@ -78,7 +78,7 @@ class NewsDetailsFragment : Fragment() {
         })
     }
 
-    private fun changeLang(newLocale: Locale) {
+    private fun changeLang(newLocale: Locales) {
         // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             activity,

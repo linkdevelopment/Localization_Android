@@ -2,7 +2,7 @@ package com.linkdev.localization.data.models
 
 import java.util.*
 
-enum class Locales(val value: Locale) {
+enum class Locales(val locale: Locale) {
     Arabic(Locale("ar")),
     English(Locale("en")),
     Albanian(Locale("sq")),
@@ -54,5 +54,8 @@ enum class Locales(val value: Locale) {
     Vietnamese(Locale("vi")),
     Zulu(Locale("zu"));
 
+    companion object {
+        fun getLocale(language: String) = values().first { it.locale.language == language }
+    }
 
 }
