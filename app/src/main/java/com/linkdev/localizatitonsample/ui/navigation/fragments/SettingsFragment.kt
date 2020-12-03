@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.linkdev.localization.Localization
-import com.linkdev.localization.data.models.Locales
+import com.linkdev.localization.data.models.LocalizationLocale
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
 import com.linkdev.localizatitonsample.utils.Constants
@@ -15,12 +15,11 @@ import com.linkdev.localizatitonsample.utils.UIUtils
 import com.linkdev.localizatitonsample.utils.UIUtils.setToolbar
 import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
-import java.util.*
 
 class SettingsFragment : Fragment() {
 
     private lateinit var mContext: Context
-    private lateinit var currentLocale: Locales
+    private lateinit var currentLocale: LocalizationLocale
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +57,7 @@ class SettingsFragment : Fragment() {
         if (activity != null)
             mContext = this.activity as Context
 
-        currentLocale = Localization.getLocales()
+        currentLocale = Localization.getLocalizationLocale()
         onSetSelectionCurrentLanguage(currentLocale)
         setToolbar(mContext, toolBar, getString(R.string.settings), false)
         setListeners()
@@ -72,22 +71,22 @@ class SettingsFragment : Fragment() {
     }
 
     private fun onLangEnglishClicked() {
-        currentLocale = Locales.English
+        currentLocale = LocalizationLocale.English
         onSetSelectionCurrentLanguage(currentLocale)
     }
 
     private fun onLangArabicClicked() {
-        currentLocale = Locales.Arabic
+        currentLocale = LocalizationLocale.Arabic
         onSetSelectionCurrentLanguage(currentLocale)
     }
 
-    private fun onSetSelectionCurrentLanguage(lang: Locales) {
+    private fun onSetSelectionCurrentLanguage(lang: LocalizationLocale) {
         when (lang) {
-            Locales.Arabic -> {
+            LocalizationLocale.Arabic -> {
                 onChangeLangText(tvLangArabic, tvLangEnglish)
 
             }
-            Locales.English -> {
+            LocalizationLocale.English -> {
                 onChangeLangText(tvLangEnglish, tvLangArabic)
 
             }
@@ -101,7 +100,7 @@ class SettingsFragment : Fragment() {
         inactiveLang.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary))
     }
 
-    private fun changeLang(newLocale: Locales) {
+    private fun changeLang(newLocale: LocalizationLocale) {
         // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             activity,

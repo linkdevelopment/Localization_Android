@@ -7,13 +7,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.linkdev.localization.Localization
-import com.linkdev.localization.data.models.Locales
+import com.linkdev.localization.data.models.LocalizationLocale
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.ui.navigation.NavigationActivity
 import com.linkdev.localizatitonsample.utils.UIUtils.setToolbar
 import kotlinx.android.synthetic.main.layout_news_details.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
-import java.util.*
 
 class NewsDetailsFragment : Fragment() {
 
@@ -50,11 +49,11 @@ class NewsDetailsFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return (when (item.itemId) {
             R.id.arabic -> {
-                changeLang(Locales.Arabic)
+                changeLang(LocalizationLocale.Arabic)
                 true
             }
             R.id.english -> {
-                changeLang(Locales.English)
+                changeLang(LocalizationLocale.English)
                 true
             }
             else ->
@@ -71,7 +70,7 @@ class NewsDetailsFragment : Fragment() {
     }
 
 
-    private fun changeLang(newLocale: Locales) {
+    private fun changeLang(newLocale: LocalizationLocale) {
         // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             activity,

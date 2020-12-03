@@ -2,7 +2,7 @@ package com.linkdev.localization.data.models
 
 import java.util.*
 
-enum class Locales(val locale: Locale) {
+enum class LocalizationLocale(val locale: Locale) {
     Arabic(Locale("ar")),
     English(Locale("en")),
     Albanian(Locale("sq")),

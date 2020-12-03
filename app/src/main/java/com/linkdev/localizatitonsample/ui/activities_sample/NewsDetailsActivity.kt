@@ -8,14 +8,13 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.linkdev.localization.Localization
-import com.linkdev.localization.data.models.Locales
+import com.linkdev.localization.data.models.LocalizationLocale
 import com.linkdev.localizatitonsample.R
 import com.linkdev.localizatitonsample.data.NewsModel
 import com.linkdev.localizatitonsample.ui.fragments_sample.NewsDetailsFragment
 import com.linkdev.localizatitonsample.utils.UIUtils
 import kotlinx.android.synthetic.main.layout_news_details.*
 import kotlinx.android.synthetic.main.tool_bar_layout.*
-import java.util.*
 
 
 class NewsDetailsActivity : AppCompatActivity() {
@@ -53,13 +52,13 @@ class NewsDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.arabic -> {
-                changeLang(Locales.Arabic)
+                changeLang(LocalizationLocale.Arabic)
 
                 return true
             }
 
             R.id.english -> {
-                changeLang(Locales.English)
+                changeLang(LocalizationLocale.English)
 
                 return true
             }
@@ -67,7 +66,7 @@ class NewsDetailsActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun changeLang(newLocale: Locales) {
+    private fun changeLang(newLocale: LocalizationLocale) {
         // TODO: Call [setLocaleAndRestart] to change app language with new locale and restart
         Localization.setLocaleAndRestart(
             this,
