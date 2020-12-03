@@ -61,12 +61,12 @@ or Maven:
 >  **Params**
 >   * **currentActivity** : Current activity and it is **required**
 >   * **newLocale** : New locale object that will be applied and it is **required**, you can create it using one of the following methods:
->        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
+>        1. Using our custom LocalizationLocale class, It an is enum class that provides a quick access to localization locale and support all languages instead of creating it by yourself:
 >
 >        ``` kotlin
->                            val newLocale = Locales.English
->                            val newLocale = Locales.French
->                            val newLocale = Locales.Arabic
+>                            val newLocale = LocalizationLocale.English
+>                            val newLocale = LocalizationLocale.French
+>                            val newLocale = LocalizationLocale.Arabic
 >        ```
 >
 >        2. By creating a new local object:
@@ -107,12 +107,12 @@ or Maven:
 >   * **context** : The current context and it is **required**
 >   * **newLocale** : New locale object that will be applied and it is **required**, you can create it using one of the following methods:
 >
->        1. Using our custom Locales class, It an is enum class that provides a quick access to locales and support all languages instead of creating it by yourself:
+>        1. Using our custom LocalizationLocale class, It an is enum class that provides a quick access to localization locale and support all languages instead of creating it by yourself:
 >
 >        ``` kotlin
->                            val newLocale = Locales.English
->                            val newLocale = Locales.French
->                            val newLocale = Locales.Arabic
+>                            val newLocale = LocalizationLocale.English
+>                            val newLocale = LocalizationLocale.French
+>                            val newLocale = LocalizationLocale.Arabic
 >        ```
 >
 >        2. By creating a new local object:
@@ -123,7 +123,12 @@ or Maven:
 
 * Call **Localization.getLocale()** method to get the current saved locale.
 ```kotlin
-    val currentSavedLocale = Localization.getLocale()
+    val currentSavedLocale: Locale = Localization.getLocale()
+```
+
+* Call **Localization.getLocalizationLocale()** method to get the current saved custom enum LocalizationLocale.
+```kotlin
+    val currentSavedLocale: LocalizationLocale = Localization.getLocalizationLocale()
 ```
 
 
