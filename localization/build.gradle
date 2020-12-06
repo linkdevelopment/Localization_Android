@@ -15,6 +15,32 @@
  **/
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = "Localization"
+    bintrayName = "com.linkdev.localization"
+    libraryName = "Localization"
+
+    libraryDescription = 'Localization is an easy to use library that will handle localization for you in your Android application.'
+
+    publishedGroupId = 'com.linkdev.localization'
+    artifact = 'Localization'
+    libraryVersion = '1.0.0'
+
+
+    siteUrl = 'https://github.com/linkdevelopment/Localization_Android'
+    gitUrl = 'https://github.com/linkdevelopment/Localization_Android.git'
+
+    developerId = 'linkdev-libraries'
+    developerName = 'Link Development'
+    developerEmail = 'linkdev.libraries@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 30
@@ -47,3 +73,9 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
 }
+
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+}
+
