@@ -12,14 +12,14 @@ Localization is an easy to use library that will handle localization for you in 
 
 Use Gradle:
 ```
-implementation 'com.linkdev.localization:localization:1.0.0'
+implementation 'com.linkdev.localization:localization:1.0.1'
 ```
 or Maven:
 ```
 <dependency>
   <groupId>com.linkdev.localization</groupId>
   <artifactId>localization</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
